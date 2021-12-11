@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:id="@+id/rootHelpLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorSurface">
+
+    <include
+            android:id="@+id/headerL"
+            layout="@layout/header_back_with_text"/>
+
+    <LinearLayout
+            android:id="@+id/llMainTermconfitions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_below="@+id/headerL">
+
+
+
+        <include
+                layout="@layout/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"/>
+    </LinearLayout>
+    <include
+            layout="@layout/progressbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"/>
+    <include
+            layout="@layout/nodatafound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"/>
+    <include
+            layout="@layout/nointernetconnection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"/>
+</RelativeLayout>

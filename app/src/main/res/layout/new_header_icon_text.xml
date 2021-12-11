@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootHeaderLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_30ssp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:background="#16000000">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgCloseIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/icon_menu" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="invisible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/arrow_down_icon_header_black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/arrow_down_icon_header_black" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_selectLocation"
+                style="@style/textBlack16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_semibold"
+                android:gravity="center"
+                android:hint="@string/select_city"
+                android:maxLines="1"
+                android:visibility="gone"
+                android:text="dfff"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:fontFamily="@font/nunito_regular" />
+            <TextView
+                android:id="@+id/tv_selectLocation1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_semibold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="dfff"
+                android:singleLine="true"
+                android:textColor="@color/backgrounddarkcolor"
+                android:textSize="@dimen/_14ssp"
+                app:fontFamily="@font/nunito_regular" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end">
+
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgCloseIcon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/icon_bell_"
+                android:tint="@color/white" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgCloseIcon1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:src="@drawable/icon_search" />
+
+</LinearLayout>

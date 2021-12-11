@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/itemNotificationLayoutMain"
+    android:padding="@dimen/_10sdp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/itemNotificationImage"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:layout_constraintCircle="@dimen/_70sdp"
+        app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+        app:actualImageScaleType="fitXY"
+        app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+        app:placeholderImageScaleType="fitXY"
+        app:roundAsCircle="true"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemNotificationTextUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textBlack16"
+                tools:text="Amit Pandya"
+                android:fontFamily="@font/nunito_bold"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_weight="1"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemNotificationTextDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/textBlack16"
+                tools:text="Amit Pandya"
+                android:fontFamily="@font/nunito_light"
+                android:textSize="@dimen/_12ssp"
+                android:singleLine="false"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:textColor="@color/notification_gray"
+                android:layout_weight="1"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/deleteNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/delete_comment_icon_black"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_5sdp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.PostDesTextView
+            android:id="@+id/itemNotificationTextDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/textBlack16"
+            tools:text="Amit Pandya"
+            android:fontFamily="@font/nunito_regular"
+            android:textSize="@dimen/_16ssp"
+            android:singleLine="false"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:textColor="@color/black"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

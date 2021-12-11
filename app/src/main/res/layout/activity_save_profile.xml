@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootProfileLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgrounddarkcolor"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <FrameLayout
+                        android:id="@+id/profileFrameLayoutImage"
+                        android:layout_width="@dimen/_95sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30sdp">
+
+                        <FrameLayout
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center">
+
+
+                            <com.github.florent37.shapeofview.shapes.CircleView
+                                android:layout_width="@dimen/_68sdp"
+                                android:layout_height="@dimen/_68sdp"
+                                android:layout_gravity="center">
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/profile_imv_dp"
+                                    android:layout_width="@dimen/_68sdp"
+                                    android:layout_height="@dimen/_68sdp"
+                                    android:alpha="0.7"
+                                    android:background="#894FC4"
+                                    android:scaleType="fitXY" />
+
+                            </com.github.florent37.shapeofview.shapes.CircleView>
+
+
+                        </FrameLayout>
+
+                    </FrameLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/profile_imv_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_80sdp"
+                        android:layout_marginBottom="@dimen/_1sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/camara_profile_icon" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llEmailVarification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/llsinginEmailid"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llsinginEmailid"
+                    app:layout_constraintVertical_bias="0.098"
+                    tools:layout_editor_absoluteX="0dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="First Name">
+
+                        </TextView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/registerNameInputTypeFirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/registerNameEditFirstName"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="true"
+                                android:focusedByDefault="true"
+                                android:hint="Enya"
+                                android:inputType="textCapWords"
+                                android:maxLength="100"
+                                android:maxLines="1"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:text="@{registerPojo.status != null? registerPojo.status :registerPojo.status}"
+                                tools:text="Enya"
+                                android:textColor="@color/white"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Last Name"
+                            android:textColor="@color/socialbtncolor"
+                            android:textSize="@dimen/_20sdp" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/registerNameInputTypeLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/registerNameEditLastName"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%()_-+=-."
+                                android:hint="Zelaya"
+                                android:inputType="textCapWords"
+                                android:maxLength="30"
+                                android:maxLines="1"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                tools:text="Zelaya"
+                                android:textColor="@color/white"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/registerEmail_text_input"
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email Id">
+
+                        </TextView>
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/imgdropdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/registerEmailEditEmail"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:imeOptions="actionNext"
+                                android:inputType="textEmailAddress"
+                                android:singleLine="true"
+                                tools:text="enya.zelaya@gmail.com"
+                                android:textColor="@color/white"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvVerified"
+                                style="@style/TextAppearance.MaterialComponents.Body1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:drawableStart="@drawable/verified_email_icon"
+                                android:drawablePadding="@dimen/_8sdp"
+                                android:fontFamily="@font/nunito_regular"
+                                android:textColor="@color/colorOnError"
+                                android:textSize="@dimen/_16ssp"
+                                android:drawableTint="@color/white"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.58dp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:background="@color/white" />
+                    </LinearLayout>
+
+                    <!--   note:    new filled add karvanu che Sign up mathe j use thase
+                                    and moblie number nu fild hide thase teni jagyae Dob visible
+                                    thase -->
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/Dob_text_input"
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date of Birth" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/registerdobEditDateOfBrith"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="14"
+                                android:singleLine="true"
+                                tools:text="29/10/1998"
+                                android:textColor="@color/white"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.58dp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:background="@color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/mobileno_text_input"
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/mobile_number_one" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/registerMobileEditMobile"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="14"
+                                android:singleLine="true"
+                                android:textColor="@color/white"
+                                tools:text="+91 98980 98980" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvVerifiedMobile"
+                                style="@style/TextAppearance.MaterialComponents.Body1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:drawableStart="@drawable/verified_email_icon"
+                                android:drawablePadding="@dimen/_8sdp"
+                                android:drawableTint="@color/white"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.58dp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:background="@color/white" />
+                    </LinearLayout>
+
+
+                    <!--                    new filde bio list add karvanu che-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bio">
+
+                        </TextView>
+
+
+                        <TextView
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:textColor="@color/white"
+                            android:text="I am a student who lives in Bangalore city with my family. All my friends are from the city too.">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.internal.BaselineLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.58dp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:background="@color/white" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Password"
+                            android:textColor="@color/socialbtncolor"
+                            android:textSize="@dimen/_20sdp" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/registerPasswordInputTypePassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:hintEnabled="false"
+                            app:passwordToggleEnabled="true"
+                            app:passwordToggleTint="@color/white">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/registerPasswordEditPassword"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%()_-+=-."
+                                android:hint="********"
+                                android:focusable="true"
+                                android:imeOptions="actionDone"
+                                android:focusedByDefault="true"
+                                android:inputType="textPassword"
+                                android:maxLength="16"
+                                tools:text="********"
+                                android:textColor="@color/white"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/registerNameEditUserIDerror"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginTop="-14dp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:fontFamily="@font/nunito_regular"
+                            android:text="@string/verified"
+                            android:textColor="@color/text_red"
+                            android:textSize="@dimen/_12ssp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/registerNameInputTypeUserID_title"
+                            style="@style/singinTextviewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="User Id"
+                            android:textColor="@color/socialbtncolor"
+                            android:textSize="@dimen/_20sdp" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:orientation="horizontal">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tag"
+                                android:textSize="@dimen/_18ssp"
+                                android:textColor="@color/white"/>
+
+                            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                android:id="@+id/registerNameInputTypeUserID"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%()_-+=-."
+                                android:imeOptions="actionDone"
+                                android:inputType="text"
+                                android:background="@null"
+                                android:textColor="@color/white"
+                                android:maxLength="12"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                android:singleLine="true"
+                                tools:text="enya_zelaya" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0.58dp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:background="@color/white" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <com.chand.progressbutton.ProgressButton
+                    android:id="@+id/btnSave"
+                    style="@style/ButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:textAllCaps="false"
+                    app:p_arrowVisible="false"
+                    app:p_fontFamily="nunito_regular"
+                    app:p_backgroundTint="@color/toolbarmaincolor"
+                    app:p_cornerRadius="@dimen/_8sdp"
+                    app:p_elevation="5.0"
+                    app:p_progressColor="@color/toolbarmaincolor"
+                    app:p_style="progressBar"
+                    app:p_text="@string/save"
+                    app:p_textColor="@color/white"
+                    app:p_textSize="@dimen/_24sdp" />
+
+
+
+                <!-- save tya pachi sing up screen ma kulse tyare show karvanu che a id ne
+                     android:id="@+id/registerPasswordButtonContinue"
+
+                     -tya shudhi gone rakhvanu che..
+                 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+                    <com.chand.progressbutton.ProgressButton
+                        android:id="@+id/registerPasswordButtonContinue"
+                        style="@style/ButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:textAllCaps="false"
+                        app:p_backgroundTint="@color/toolbarmaincolor"
+                        app:p_cornerRadius="@dimen/_8sdp"
+                        app:p_fontFamily="nunito_regular"
+                        app:p_elevation="5.0"
+                        app:p_style="progressBar"
+                        app:p_textColor="@color/white"
+                        app:p_text="Sign Up"
+                        app:p_textSize="@dimen/_24sdp"
+                        app:p_progressColor="@color/toolbarmaincolor"
+                        app:p_arrowVisible="false"/>
+                </LinearLayout>
+                <TextView
+                    style="@style/singinTextviewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/_14sdp"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:text="By signing up, you are agreeing to our"/>
+
+                <TextView
+                    style="@style/singinTextviewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginLeft="0dp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="Terms &amp; Privacy Policy"/>
+
+
+                <LinearLayout
+                    android:id="@+id/_youhave_sing_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnSignIn">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/appCompatTextView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="First time at CamFire?"
+                        android:textColor="@color/socialbtncolor"
+                        android:textSize="@dimen/_14ssp" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvSingInBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="  Sign In"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

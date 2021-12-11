@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/ll_reason_report"
+    android:layout_marginLeft="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_post_reason_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="it's spam"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_semibold"
+
+      />
+</LinearLayout>

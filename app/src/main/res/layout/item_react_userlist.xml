@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp">
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <FrameLayout
+            android:id="@+id/profileFrameLayoutImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+        <!--<com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="70.5dp"
+                android:layout_height="70.5dp"
+                app:placeholderImage="@drawable/user_icon_signup"
+                app:actualImageResource="@drawable/user_icon_signup"
+                android:scaleType="centerCrop"
+                app:roundAsCircle="true"
+                app:actualImageScaleType="fitXY"/>-->
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imv_user_dp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            app:roundingBorderColor="@color/colorPrimary"
+            app:roundingBorderWidth="1dp"
+            app:placeholderImage="@drawable/footer_icon_my_profile_grey"
+            app:actualImageResource="@drawable/footer_icon_my_profile_grey"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true"
+            app:actualImageScaleType="fitXY"
+            app:roundBottomEnd="true"
+            app:roundBottomLeft="true"
+            app:roundBottomStart="true"
+            app:roundBottomRight="true"
+            app:roundTopEnd="true"
+            app:roundTopLeft="true"
+            app:roundTopStart="true"
+            app:roundTopRight="true"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imv_edit_react"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/edit_upload_profile_pic_with_camera_icon"
+                android:layout_gravity="bottom|right"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_28sdp"
+               />
+        </FrameLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tabContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="Vaikunj Gandhi"
+            android:textAllCaps="false"
+            android:fontFamily="@font/nunito_regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFollow"
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:elevation="@dimen/_4sdp"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nunito_regular"
+            android:letterSpacing="0"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_shadow_bg"
+            android:textSize="@dimen/_12ssp"
+            android:text="@string/follow"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFollowing"
+            style="@style/Widget.Fusion.Button.yellow_Outline"
+            android:layout_width="@dimen/_85sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:fontFamily="@font/nunito_regular"
+            android:letterSpacing="0"
+            android:text="@string/following"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/_15sdp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

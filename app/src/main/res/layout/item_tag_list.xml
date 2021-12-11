@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.PostDesTextView
+        android:id="@+id/tvFeedUserTaglist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#VaikunjGandhi"
+        android:textAllCaps="false"
+        android:paddingTop="@dimen/_3sdp"
+        android:paddingBottom="@dimen/_3sdp"
+        android:fontFamily="@font/nunito_regular"
+        android:textColor="@color/text_blue"
+        android:textSize="@dimen/_16ssp" />
+</LinearLayout>

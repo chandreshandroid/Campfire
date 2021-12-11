@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5sdp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvReportTitle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="Reason for reporting"
+        android:textSize="@dimen/_18ssp"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center"
+        app:fontFamily="@font/nunito_semibold"
+        />
+    <com.google.android.material.internal.BaselineLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/otp_shadow"
+        android:layout_marginTop="@dimen/_2sdp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvReportReason"
+        android:nestedScrollingEnabled="false" />
+
+</LinearLayout>

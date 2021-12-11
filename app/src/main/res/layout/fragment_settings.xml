@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgrounddarkcolor">
+
+    <include
+        android:id="@+id/include11"
+        layout="@layout/transparent_toolbar_layout" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/settingsTextChangePassword"
+        style="@style/AppCompatTextView_seting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include11"
+        app:layout_constraintVertical_bias="0.022"
+        tools:layout_editor_absoluteX="-28dp" />
+
+    <com.google.android.material.internal.BaselineLayout
+        android:id="@+id/baselineLayout"
+        style="@style/BaselineLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTextChangePassword"
+        tools:layout_editor_absoluteX="15dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/settingsTextChangeLanguage"
+        style="@style/AppCompatTextView_seting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_language"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/baselineLayout"
+        app:layout_constraintVertical_bias="0.026"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <com.google.android.material.internal.BaselineLayout
+        android:id="@+id/baselineLayout2"
+        style="@style/BaselineLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTextChangeLanguage" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/settingsTextSignatureVideo"
+        style="@style/AppCompatTextView_seting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signature_video"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/baselineLayout2"
+        app:layout_constraintVertical_bias="0.026"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <com.google.android.material.internal.BaselineLayout
+        android:id="@+id/baselineLayout3"
+        style="@style/BaselineLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTextSignatureVideo"
+        tools:layout_editor_absoluteX="15dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/baselineLayout3"
+        app:layout_constraintVertical_bias="0.026"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settingsTextDarkmode"
+                style="@style/AppCompatTextView_seting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:drawableRight="@null"
+                android:text="@string/dark_mode" />
+
+
+            <Switch
+                android:id="@+id/SwitchDarkMode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:switchPadding="@dimen/_3sdp"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.internal.BaselineLayout
+        android:id="@+id/baselineLayout4"
+        style="@style/BaselineLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2"
+        tools:layout_editor_absoluteX="15dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/baselineLayout4"
+        app:layout_constraintVertical_bias="0.026"
+        tools:layout_editor_absoluteX="-16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/settingsTextNotifications"
+                style="@style/AppCompatTextView_seting"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:drawableRight="@null"
+                android:text="@string/notifications" />
+
+
+            <Switch
+                android:id="@+id/SwitchNotifications"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="0.5"
+                android:switchPadding="@dimen/_3sdp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.internal.BaselineLayout
+        android:id="@+id/baselineLayout5"
+        style="@style/BaselineLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
+        tools:layout_editor_absoluteX="15dp" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/settingsTextDeleteAccount"
+        style="@style/AppCompatTextView_seting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_account"
+        android:drawableRight="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/baselineLayout5"
+        app:layout_constraintVertical_bias="0.025"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <com.google.android.material.internal.BaselineLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        style="@style/BaselineLayouts"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTextDeleteAccount"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="-14dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

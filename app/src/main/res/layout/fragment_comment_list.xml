@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgrounddarkcolor">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/commentLayoutMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="@dimen/_40sdp">
+
+        <include layout="@layout/toolbar_layout_top_margin" />
+
+        <include
+            layout="@layout/generallistlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/card_add_comment"
+            android:layout_below="@+id/rootHeaderLayout"
+            android:layout_weight="1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_add_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="-5dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginRight="-5dp"
+            android:layout_marginBottom="-5dp"
+            app:cardBackgroundColor="@color/backgrounddarkcolor"
+            app:cardUseCompatPadding="true">
+
+            <com.google.android.material.internal.BaselineLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/otpUnderlinecolor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_comment_reply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCommentReplyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nunito_regular"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingTop="@dimen/_1sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_1sdp"
+                        android:text="Reply to"
+                        android:textAllCaps="false"
+                        android:textColor="@color/text_blue1"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_clear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/close_icon_onboarding"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_add_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/_5ssp"
+                    android:padding="@dimen/_10sdp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/imv_user_dp_comment"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+                        app:actualImageScaleType="fitXY"
+                        app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+                        app:placeholderImageScaleType="fitXY"
+                        app:roundAsCircle="true"
+                        app:roundBottomEnd="true"
+                        app:roundBottomLeft="true"
+                        app:roundBottomRight="true"
+                        app:roundBottomStart="true"
+                        app:roundTopEnd="true"
+                        app:roundTopLeft="true"
+                        app:roundTopRight="true"
+                        app:roundTopStart="true"
+                        app:roundingBorderColor="@color/colorPrimary"
+                        app:roundingBorderWidth="1dp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/editComment"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="305dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/nunito_regular"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLength="200"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/otpUnderlinecolor"
+                        tools:hint="Write a comment..." />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCommentPost"
+                        style="@style/TextAppearance.AppCompat.Large"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/nunito_semibold"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/post"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_18ssp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

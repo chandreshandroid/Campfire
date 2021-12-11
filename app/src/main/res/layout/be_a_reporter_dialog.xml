@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/root_Dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:paddingTop="@dimen/_15sdp"
+    android:paddingBottom="@dimen/_15sdp">
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_logo_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/logo_you_are_reporter_prompt"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserNameDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="Fusion info"
+        android:textSize="@dimen/_20ssp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:fontFamily="@font/nunito_regular"
+        android:maxLines="1"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserIdDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="Fusion"
+        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center"
+        app:fontFamily="@font/nunito_regular"
+        android:maxLines="1"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvyouare_reporterDialog"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="You are reporter now!"
+        android:textSize="@dimen/_20ssp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center"
+        app:fontFamily="@font/nunito_semibold"
+        />
+</LinearLayout>

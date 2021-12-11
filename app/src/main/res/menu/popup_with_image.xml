@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/edit_profile"
+            android:icon="@drawable/edit_profile_icon_black"
+            android:title="Edit Profile" />
+
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/settings_icon_black"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/signature_Video"
+        android:icon="@drawable/ic_video_black"
+        android:title="Signature Video"
+        android:visible="false"/>
+
+    <item
+            android:id="@+id/signout"
+            android:icon="@drawable/sign_out_icon_black"
+            android:title="Sign Out" />
+    <item
+            android:id="@+id/hideforEveryOne"
+            android:icon="@drawable/sign_out_icon_black"
+            android:title="Hide For Everyone"
+            android:visible="false"/>
+
+</menu>

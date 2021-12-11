@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E7E7E7</color>
+    <color name="colorPrimaryDark">#B5B5B5</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="colorPrimaryVariant">#FFF</color>
+    <color name="colorSecondary">#00F0FF</color>
+    <color name="colorSecondaryVariant">#14DCE9</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorError">#F57F17</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#1E1E1E</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorOnError">#F57F17</color>
+    <color name="text_primary">#191919</color>
+
+    <color name="text_black">#121316</color>
+    <color name="text_black_1">#16181D</color>
+    <color name="text_gray">#6A6A6A</color>
+    <color name="text_gray_1">#55565A</color>
+    <color name="text_gray_2">#5D5D5D</color>
+    <color name="text_gray_hint">#656565</color>
+    <color name="bg_button">#F05928</color>
+    <color name="bg_gray_dark">#BDBDBD</color>
+    <color name="bg_gray_light">#EEEEEE</color>
+    <color name="text_blue">#007AFF</color>
+    <color name="button_shadow">#F19E7E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="otp_shadow">#A5A6B6</color>
+    <color name="text_light">#636363</color>
+    <color name="text_hint">#767676</color>
+    <color name="bottom_navigation_selected">#F05F25</color>
+    <color name="bottom_navigation_unselected">#777777</color>
+    <color name="browen">#AC7C4C</color>
+    <color name="green">#08C31A</color>
+    <color name="black_light_dark">#1F1F1F</color>
+    <color name="text_red">#D81616</color>
+    <color name="gray_base_line">#A7A7A7</color>
+    <color name="text_title">#5B5B5B</color>
+    <color name="following">#F05F23</color>
+    <color name="text_blue_dark">#007CDC</color>
+    <color name="seek_bar_color">#ED1C24</color>
+    <color name="notification_gray">#6B6B6B</color>
+    <color name="notification_unread_gray">#F9F9F9</color>
+    <color name="bg_transprent">#7F7F7F</color>
+    <color name="grey">#F4F4F4</color>
+
+    <color name="multiple_image_select_primary">@color/colorPrimary</color>
+    <color name="multiple_image_select_primaryDark">@color/colorPrimaryDark</color>
+    <color name="multiple_image_select_primaryLight">#D1C4E9</color>
+    <color name="multiple_image_select_accent">#536DFE</color>
+    <color name="multiple_image_select_primaryText">@color/black</color>
+    <color name="multiple_image_select_secondaryText">#727272</color>
+    <color name="multiple_image_select_divider">#B6B6B6</color>
+    <color name="multiple_image_select_toolbarPrimaryText">@color/black</color>
+    <color name="multiple_image_select_albumTextBackground">#99FFFFFF</color>
+    <color name="multiple_image_select_imageSelectBackground">#000000</color>
+    <color name="text_blue1">#1B84FF</color>
+    <color name="bronze_level">#A15525</color>
+    <color name="notificationunread">#8099AEDE</color>
+    <color name="placeholder_bg">#dddddd</color>toolbarmaincolor
+    <color name="eneble">#B1BCBE</color>
+
+
+    <color name="backgrounddarkcolor">#1A1A1A</color>
+    <color name="selectedColor">#F05928</color>
+    <color name="selectedMapColor">#A8F05928</color>
+    <color name="socialbtncolor">#5F5F5F</color>
+    <color name="toolbarmaincolor">#F05928</color>
+    <color name="splesh_dark_color">#2D2D2D</color>
+    <color name="otpUnderlinecolor">#A5A6B6</color>
+    <color name="fbBtncolor">#3962AC</color>
+
+</resources>

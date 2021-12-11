@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/_35ssp">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textSmall"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14ssp"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:fontFamily="@font/nunito_regular"
+        android:text="Simple TExt"
+        android:textColor="@color/white"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        />
+    <ImageView
+        android:id="@+id/ivSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_slect_ovel"
+        android:layout_below="@+id/textSmall"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/_5sdp"/>
+</RelativeLayout>
+
+

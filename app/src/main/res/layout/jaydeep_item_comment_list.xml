@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgrounddarkcolor"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_5sdp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imv_user_dp_comment"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+            app:actualImageScaleType="fitXY"
+            app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true"
+            app:roundBottomEnd="true"
+            app:roundBottomLeft="true"
+            app:roundBottomRight="true"
+            app:roundBottomStart="true"
+            app:roundTopEnd="true"
+            app:roundTopLeft="true"
+            app:roundTopRight="true"
+            app:roundTopStart="true"
+            app:roundingBorderColor="@color/colorPrimary"
+            app:roundingBorderWidth="1dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.7"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivlogoWaterMark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/report_icon_black"
+                        android:visibility="gone" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCommentuser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_bold"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp"
+                        tools:text="Tanner Lorenson" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvCommentuserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_regular"
+                        android:singleLine="true"
+                        android:textAllCaps="false"
+                        android:textColor="@color/otpUnderlinecolor"
+                        android:textSize="@dimen/_12ssp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        tools:text="At vero eos et accusamus et iusto odio dignissimos \nducimus qui blanditiis praesentium" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/ivfevBtnComment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/fevorite_drawer_icon">
+
+                </ImageView>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCommentTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textAllCaps="false"
+                    android:textColor="@color/socialbtncolor"
+                    android:textSize="@dimen/_12ssp"
+                    tools:text="2d" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_like"
+                    android:layout_width="@dimen/_16ssp"
+                    android:layout_height="@dimen/_16ssp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_25sdp"
+                    android:src="@drawable/reaction_like_icon_small"
+                    android:tint="@color/white"
+                    android:visibility="gone"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="16 Likes"
+                    android:visibility="visible"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_like_count"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:textSize="@dimen/_12ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Reply"
+                    android:textAllCaps="false"
+                    android:padding="@dimen/_8sdp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:id="@+id/tv_reply_comment"
+                    android:textSize="@dimen/_12ssp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/subCommentsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_50sdp"
+        tools:listitem="@layout/jaydeep_item_subcommentslayout"
+        tools:itemCount="1"
+        android:nestedScrollingEnabled="false">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rvViewAllComment"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCommenViewAll"
+            android:layout_width="wrap_content"
+            android:text="- View All Comments"
+            android:textColor="@color/text_gray"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:fontFamily="@font/nunito_semibold"
+            android:textSize="@dimen/_16ssp"
+            android:padding="@dimen/_5sdp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_height="wrap_content"/>
+        <ProgressBar
+            android:id="@+id/progressComment"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:indeterminateTint="@color/bg_button"
+            android:adjustViewBounds="true"
+            android:theme="@style/AppTheme.WhiteAccent"/>
+    </RelativeLayout>
+
+</LinearLayout>

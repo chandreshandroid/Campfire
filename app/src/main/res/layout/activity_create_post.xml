@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootCreatePost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgrounddarkcolor"
+    android:descendantFocusability="afterDescendants"
+    android:orientation="vertical"
+    tools:context=".activity.CreatePostActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgrounddarkcolor"
+        android:descendantFocusability="afterDescendants"
+        android:orientation="vertical"
+        tools:context=".activity.CreatePostActivity">
+
+        <include layout="@layout/toolbar_layout" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/llSaveAction"
+            android:layout_below="@+id/rootHeaderLayout"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rvVideo"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:keepScreenOn="true"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_width="@dimen/_200sdp"
+                            android:layout_height="@dimen/_200sdp"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <com.google.android.exoplayer2.ui.PlayerView
+                                android:id="@+id/exoPlayer1"
+                                android:layout_width="@dimen/_200sdp"
+                                android:layout_height="@dimen/_200sdp"
+                                android:background="@color/black"
+                                android:minHeight="@dimen/_200sdp"
+                                app:auto_show="true"
+                                app:controller_layout_id="@layout/exo_playback_control_view_crate_post"
+                                app:hide_on_touch="false"
+                                app:resize_mode="fit"
+                                app:surface_type="texture_view"
+                                app:use_controller="true" />
+
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/thumnail"
+                                android:layout_width="@dimen/_200sdp"
+                                android:layout_height="@dimen/_200sdp"
+                                android:layout_centerInParent="true"
+                                android:background="@color/black"
+                                app:actualImageScaleType="centerCrop" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/playicon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/play_btn_overlay_on_video_on_home" />
+
+                        </RelativeLayout>
+
+                        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                            android:id="@+id/chorono"
+                            android:layout_width="@dimen/_200sdp"
+                            android:layout_height="@dimen/_200sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@color/text_red"
+                            android:focusableInTouchMode="true"
+                            android:visibility="gone"
+                            app:corner_radius="@dimen/_15sdp">
+
+                            <Chronometer
+                                android:id="@+id/chronometerTimer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:padding="@dimen/_3sdp"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12ssp" />
+
+
+                        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+                    </FrameLayout>
+
+
+                    <ProgressBar
+                        android:id="@+id/pb"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_centerInParent="true"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="gone"
+
+                        />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/rvImages"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:keepScreenOn="true"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="@dimen/_200sdp"
+                        android:layout_height="@dimen/_200sdp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:keepScreenOn="true"
+                        android:orientation="vertical">
+
+                        <FrameLayout
+                            android:id="@+id/framLayoutMain"
+                            android:layout_width="@dimen/_200sdp"
+                            android:layout_height="@dimen/_200sdp">
+
+                            <androidx.viewpager.widget.ViewPager
+                                android:id="@+id/view_pager2"
+                                android:layout_width="@dimen/_200sdp"
+                                android:layout_height="@dimen/_200sdp" />
+
+                            <LinearLayout
+                                android:id="@+id/layoutDotsTutorial"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp"
+                                android:layout_gravity="bottom"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                android:background="@android:color/transparent"
+                                android:gravity="center|bottom"
+                                android:orientation="horizontal" />
+                        </FrameLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:visibility="gone">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/imv_user_dp"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+                        app:actualImageScaleType="fitXY"
+                        app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+                        app:placeholderImageScaleType="fitXY"
+                        app:roundAsCircle="true"
+                        app:roundBottomEnd="true"
+                        app:roundBottomLeft="true"
+                        app:roundBottomRight="true"
+                        app:roundBottomStart="true"
+                        app:roundTopEnd="true"
+                        app:roundTopLeft="true"
+                        app:roundTopRight="true"
+                        app:roundTopStart="true"
+                        app:roundingBorderColor="@color/colorPrimary"
+                        app:roundingBorderWidth="1dp" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvFeedUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:fontFamily="@font/nunito_regular"
+                        android:text="Vaikunj Gandhi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14ssp" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/llTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/singinTextviewStyle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Title" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edit_add_headline"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:imeOptions="actionNext"
+                            android:inputType="text"
+                            android:maxLength="66"
+                            android:padding="@dimen/_15sdp"
+                            android:singleLine="true"
+                            android:textColor="@color/white"
+                            android:textColorHint="@color/text_hint" />
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@color/otp_shadow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llHashCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:id="@+id/llDiscription"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/singinTextviewStyle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Description" />
+
+                            <com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.PostDesMultiAutoCompleteTexView
+                                android:id="@+id/edit_add_description"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="280"
+                                android:padding="@dimen/_15sdp"
+                                android:singleLine="true"
+                                android:textColor="@color/white"
+                                android:textColorHint="@color/text_hint" />
+                            <!--android:hint="@string/add_description_optional"-->
+                            <com.google.android.material.internal.BaselineLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:background="@color/otp_shadow" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llHashtag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/singinTextviewStyle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Add Hash Tag(s)" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                android:orientation="horizontal"
+                                android:paddingStart="@dimen/_10sdp"
+                                android:paddingTop="@dimen/_10sdp">
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/tvHasTag"
+                                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                                    android:layout_width="@dimen/_30sdp"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:background="@drawable/bg_white_circle_for_hashtags_tagging_post_live_news"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:gravity="center"
+                                    android:paddingBottom="@dimen/_5sdp"
+                                    android:text="@string/hashtag"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_14ssp" />
+
+                                <androidx.appcompat.widget.AppCompatButton
+                                    android:id="@+id/tvTag"
+                                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                                    android:layout_width="@dimen/_30sdp"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_5sdp"
+                                    android:background="@drawable/bg_white_circle_for_hashtags_tagging_post_live_news"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:gravity="center"
+                                    android:paddingBottom="@dimen/_5sdp"
+                                    android:text="@string/tag"
+                                    android:textColor="@color/white"
+                                    android:textSize="@dimen/_14ssp" />
+                                <!--android:background="@drawable/background_ring"-->
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                            <com.google.android.material.internal.BaselineLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/otp_shadow" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/singinTextviewStyle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Location" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_15sdp">
+
+
+                            <!--                <androidx.appcompat.widget.AppCompatEditText-->
+                            <AutoCompleteTextView
+                                android:id="@+id/tvCurrentLocation"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:background="@null"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/nunito_regular"
+                                android:gravity="left|center_vertical"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16ssp" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imv_edit_current_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/add_location_icon_post_live_news" />
+
+                            <!--android:hint="@string/current_location"-->
+                        </RelativeLayout>
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@color/otp_shadow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llAudio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTextLeft"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_regular"
+                            android:padding="@dimen/_3sdp"
+                            android:text="@string/_120_characters_left"
+                            android:textColor="@color/text_hint"
+                            android:textSize="@dimen/_14ssp" />
+
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/ll_add_audio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:paddingTop="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_15sdp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/profile_imv_edit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/microphone_icon_post_live_news"
+                                android:tint="@color/white" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvAddAudio"
+                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_20sdp"
+                                android:fontFamily="@font/nunito_regular"
+                                android:gravity="center"
+                                android:text="Add Audio Over Video"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16ssp" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:id="@+id/baseline_audio"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@color/otp_shadow" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llAudiance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            style="@style/singinTextviewStyle1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Audiance" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/_15sdp"
+                            android:paddingRight="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_15sdp">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvPostVisiBility"
+                                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/nunito_regular"
+                                android:gravity="center"
+                                android:text="Public"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16ssp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvChangePostPrivacy"
+                                style="@style/TextAppearance.AppCompat.Large"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="@dimen/_5sdp"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/nunito_semibold"
+                                android:gravity="right"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:text="Change to Private"
+                                android:textColor="@color/text_blue_dark"
+                                android:textSize="@dimen/_16ssp" />
+
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <com.google.android.material.internal.BaselineLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:background="@color/otp_shadow" />
+                    </LinearLayout>
+                </LinearLayout>
+                <!--android:hint="@string/add_headline_minimum_30_charactres"-->
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llSaveAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_15sdp">
+
+            <com.chand.progressbutton.ProgressButton
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:elevation="@dimen/_4sdp"
+                android:fontFamily="@font/nunito_regular"
+                android:letterSpacing="0"
+                android:textAllCaps="false"
+                app:p_arrowVisible="false"
+                app:p_backgroundTint="@color/bg_button"
+                app:p_cornerRadius="@dimen/_10sdp"
+                app:p_elevation="5.0"
+                app:p_fontFamily="nunito_regular"
+                app:p_progressColor="@color/bg_button"
+                app:p_style="progressBar"
+                app:p_text="@string/next"
+                app:p_textColor="@color/white"
+                app:p_textSize="@dimen/_22sdp" />
+
+            <com.chand.progressbutton.ProgressButton
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:elevation="@dimen/_4sdp"
+                android:fontFamily="@font/nunito_regular"
+                android:letterSpacing="0"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                app:p_arrowVisible="false"
+                app:p_backgroundTint="@color/bg_button"
+                app:p_cornerRadius="@dimen/_10sdp"
+                app:p_elevation="5.0"
+                app:p_fontFamily="nunito_regular"
+                app:p_progressColor="@color/bg_button"
+                app:p_style="progressBar"
+                app:p_text="@string/save"
+                app:p_textColor="@color/white"
+                app:p_textSize="@dimen/_22sdp" />
+
+            <com.chand.progressbutton.ProgressButton
+                android:id="@+id/btnPostNow"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_weight="1"
+                android:elevation="@dimen/_4sdp"
+                android:fontFamily="@font/nunito_regular"
+                android:letterSpacing="0"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                app:p_arrowVisible="false"
+                app:p_backgroundTint="@color/bg_button"
+                app:p_cornerRadius="@dimen/_10sdp"
+                app:p_elevation="5.0"
+                app:p_fontFamily="nunito_regular"
+                app:p_progressColor="@color/bg_button"
+                app:p_style="progressBar"
+                app:p_text="@string/post_now"
+                app:p_textColor="@color/white"
+                app:p_textSize="@dimen/_22sdp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+</RelativeLayout>

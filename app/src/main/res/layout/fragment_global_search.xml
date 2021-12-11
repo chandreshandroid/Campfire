@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchResultLayoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgrounddarkcolor"
+    android:orientation="vertical">
+
+    <include layout="@layout/header_back_with_text" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rootHeaderLayout"
+        android:focusedByDefault="true"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp">
+
+            <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                android:id="@+id/globalsearchView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@color/white"
+                android:focusableInTouchMode="true"
+                android:padding="@dimen/_5sdp"
+                app:corner_radius="@dimen/_3sdp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:src="@drawable/search_icon_search_bar_light_grey" />
+                <!--android:hint="Search.."-->
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/editGlobalSearch"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/nunito_regular"
+                    android:imeOptions="actionSearch"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="#787878" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_clear_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/close_icon_onboarding"
+                    android:visibility="gone" />
+            </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/searchResultTabLayout"
+                style="@style/TabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:clipToPadding="true"
+                app:tabGravity="fill"
+                app:tabIndicator="@color/selectedColor"
+                app:tabIndicatorColor="@color/selectedColor"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="@dimen/_2sdp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/selectedColor"
+                app:tabTextAppearance="@style/TabLayout"
+                app:tabTextColor="@color/otpUnderlinecolor" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/searchResultViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5sdp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--    </androidx.core.widget.NestedScrollView>-->
+    <include
+        layout="@layout/nodatafound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <include
+        layout="@layout/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <include
+        layout="@layout/nointernetconnection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

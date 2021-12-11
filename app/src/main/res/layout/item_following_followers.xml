@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/profileFrameLayoutImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imv_user_dp"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                app:actualImageResource="@drawable/footer_icon_my_profile_grey"
+                app:actualImageScaleType="fitXY"
+                app:placeholderImage="@drawable/footer_icon_my_profile_grey"
+                app:placeholderImageScaleType="fitXY"
+                app:roundAsCircle="true"
+                app:roundBottomEnd="true"
+                app:roundBottomLeft="true"
+                app:roundBottomRight="true"
+                app:roundBottomStart="true"
+                app:roundTopEnd="true"
+                app:roundTopLeft="true"
+                app:roundTopRight="true"
+                app:roundTopStart="true"
+                app:roundingBorderColor="@color/colorPrimary"
+                app:roundingBorderWidth="1dp" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tabContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_regular"
+                android:text="Tanner Lorenson"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tabContentUserId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_regular"
+                android:text="\@tanner_lorenson16"
+                android:textAllCaps="false"
+                android:textColor="@color/otpUnderlinecolor"
+                android:textSize="@dimen/_14ssp"
+                android:visibility="visible" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFollow"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/hardik_following_shape"
+            android:elevation="0dp"
+            android:fontFamily="@font/nunito_regular"
+            android:letterSpacing="0"
+            android:text="@string/follow"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/hardik_following_shape"
+            android:elevation="0dp"
+            android:fontFamily="@font/nunito_regular"
+            android:letterSpacing="0"
+            android:text="@string/following"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="gone" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

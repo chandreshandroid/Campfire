@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgrounddarkcolor"
+    tools:context=".fragment.ReactUserListFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp">
+
+        <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/toolbarmaincolor"
+            android:focusableInTouchMode="true"
+            android:padding="@dimen/_5sdp"
+            app:corner_radius="@dimen/_15sdp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:src="@drawable/search_icon_search_bar_light_grey"
+                android:tint="@color/backgrounddarkcolor"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editSearch"
+                style="@style/TextAppearance.AppCompat.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:focusableInTouchMode="true"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="Search"
+                android:imeOptions="actionDone"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/micAudioSpeech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/mic_icon_audio"
+                android:visibility="visible" />
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_clear_edit_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/mic_icon_audio"
+                android:visibility="gone" />
+        </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <include layout="@layout/generallistlayout" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

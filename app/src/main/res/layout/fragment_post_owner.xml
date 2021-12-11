@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/postOwnerLayoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/header_back_with_text" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_15sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingRight="@dimen/_15sdp"
+        android:paddingBottom="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="@dimen/_72sdp"
+                android:layout_height="@dimen/_72sdp">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:layout_width="@dimen/_72sdp"
+                    android:layout_height="@dimen/_72sdp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/grd_circle"
+                    app:actualImageScaleType="fitXY"
+                    app:placeholderImageScaleType="fitXY"
+                    app:roundAsCircle="true"
+                    app:roundBottomEnd="true"
+                    app:roundBottomLeft="true"
+                    app:roundBottomRight="true"
+                    app:roundBottomStart="true"
+                    app:roundTopEnd="true"
+                    app:roundTopLeft="true"
+                    app:roundTopRight="true"
+                    app:roundTopStart="true"
+                    app:roundingBorderColor="@color/colorPrimary"
+                    app:roundingBorderWidth="1dp" />
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/profile_imv_dp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_gravity="center"
+                    app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+                    app:actualImageScaleType="fitXY"
+                    app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+                    app:placeholderImageScaleType="fitXY"
+                    app:roundAsCircle="true"
+                    app:roundBottomEnd="true"
+                    app:roundBottomLeft="true"
+                    app:roundBottomRight="true"
+                    app:roundBottomStart="true"
+                    app:roundTopEnd="true"
+                    app:roundTopLeft="true"
+                    app:roundTopRight="true"
+                    app:roundTopStart="true"
+                    app:roundingBorderColor="@color/colorSurface"
+                    app:roundingBorderWidth="2dp" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_5sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserName"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:maxLines="2"
+                    android:text="Sumit Singh" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserTagName"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_light"
+                    android:maxLines="2"
+                    android:text="@string/sumit"
+                    android:textSize="@dimen/_14ssp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserLevel"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:drawableLeft="@drawable/trophy_bronze_for_points_screen"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:fontFamily="@font/nunito_light"
+                    android:maxLines="2"
+                    android:text="Bronze Level"
+                    android:textColor="@color/browen"
+                    android:textSize="@dimen/_12sdp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/postOwnerTextUserClap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/clap_icon_filled_enabled" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/postOwnerTextUserClapCount"
+                        style="@style/textBlack16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:drawablePadding="@dimen/_8sdp"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="1.2K"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/postOwnerTextUserDotMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:padding="@dimen/_5sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/dot_menu_vertical" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextDot"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="invisible" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/postOwnerTextViewPoints"
+                style="@style/textBlack16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:fontFamily="@font/nunito_light"
+                android:maxLines="2"
+                android:text="View Points"
+                android:textColor="@color/text_blue"
+                android:textSize="@dimen/_12sdp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserPostCount"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="40" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserPost"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Post" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserFollowersCount"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="40" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserFollowers"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Followers" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserFollowingCount"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="40" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/postOwnerTextUserFollowing"
+                    style="@style/textBlack16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="Following" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.internal.BaselineLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@color/otp_shadow" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/postOwnerTabLayout"
+        style="@style/TabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/colorSurface"
+        android:clipToPadding="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:tabBackground="@color/colorSurface"
+        app:tabIconTint="@color/colorPrimary"
+        app:tabIndicator="@color/black"
+        app:tabIndicatorColor="@color/black"
+        app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="@dimen/_2sdp"
+        app:tabMode="fixed"
+        app:tabPaddingBottom="@dimen/_5sdp"
+        app:tabPaddingTop="@dimen/_5sdp"
+        app:tabTextAppearance="@style/TabLayout"
+        app:tabTextColor="@color/white">
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <com.google.android.material.internal.BaselineLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:background="@color/otp_shadow" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/postOwnerViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.viewpager.widget.ViewPager>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

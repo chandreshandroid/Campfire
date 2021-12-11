@@ -1,0 +1,221 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">Camfire</string>
+    <string name="selectalanguage">Select a language</string>
+    <string name="you_can_change_it">You can change it \nfrom the settings later.</string>
+    <string name="continue1">Continue</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="or_register_with">Or Register With</string>
+    <string name="err_empty_name">Please enter first name.</string>
+    <string name="err_first_name_leth">First Name must contain 3 character.</string>
+    <string name="errpool_last_name">Please enter last name.</string>
+    <string name="err_last_name">Please enter last name.</string>
+    <string name="err_last_name_leth">Last Name must contain 3 character.</string>
+    <string name="err_special_character">Only Alphabetic characters are allowed.</string>
+    <string name="next">Next</string>
+    <string name="wait1">Wait...</string>
+    <string name="registration">Registration</string>
+    <string name="email_id">Email Id</string>
+    <string name="err_empty_email">Please enter email id.</string>
+    <!--    <string name="err_valid_email">Please enter valid email.</string>-->
+    <string name="mobile_number">Mobile Number (Optional)</string>
+    <string name="err_mobile_lenth">Mobile number must contain 10 digits.</string>
+    <string name="user_id">Mobile number must contain 10 digits.</string>
+    <string name="err_empty_password">Please enter password.</string>
+    <string name="password">Password</string>
+    <string name="err_password_leth_8">Password should contain 6 characters.</string>
+    <string name="err_valid_password">Password must contain Capital letter, Small later, Number and Sign.</string>
+    <string name="msg_alert_data_loss">It may loss your previous data and seletion.</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="enter_email_mobile">Enter Email/Mobile</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="forgot_passwordS">Forgot Password</string>
+    <string name="or_continue_with">Or Continue With</string>
+    <string name="sign_in">Sign In</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="err_empty_email_mobile">Please enter mobile no. or email.</string>
+    <string name="err_enter_reg_mo">Mobile no. should be 10 digits.</string>
+    <string name="err_valid_email">Please enter valid email id.</string>
+    <string name="err_empty_pwd">Please enter password.</string>
+    <string name="err_pws_lth_8">Password must contain six character.</string>
+    <string name="send_otp">Send OTP</string>
+    <string name="enter_your_mobile_no_email_id">Enter your Mobile No./Email Id</string>
+    <string name="forgot_err_msg">Please enter the valid Email Address/Mobile No</string>
+    <string name="forgot_err_enter_reg_mo">Please Enter Valid Mobile No</string>
+    <string name="reg_err_enter_valid_emailid">Please Enter valid Email Address</string>
+    <string name="error_common_netdon_t_have_and_accountwork">It seems there is no internet connection.</string>
+    <string name="verification_code">Verification Code</string>
+
+    <string name="please_type_the_verification_code_sent_to_tyour_mobile_number">Please enter the 4- digit OTP received\non your phone number.</string>
+
+    <string name="resend"><u>Resend</u></string>
+    <string name="OTP_verification_validation">Please enter OTP code</string>
+    <string name="OTP_verification_valid_validation">Invalid OTP code</string>
+    <string name="OTP_verification">OTP Verification</string>
+    <string name="reset_pwd">Reset Password</string>
+    <string name="re_enter_new_password">Re-enter New Password</string>
+    <string name="enter_new_password">Enter New Password</string>
+
+    <string name="please_enter_confirm_password">Please Re-enter New Password should not be blank</string>
+    <string name="please_enter_new_password">Please enter new password</string>
+    <string name="minimum_password_error">Password must be 6 characters long</string>
+    <string name="password_does_not_match">Password does not match</string>
+    <string name="please_enter_password">Please enter old password.</string>
+    <string name="enter_old_password">Enter Old Password</string>
+    <string name="proceed">Proceed</string>
+    <string name="my_profile">My Profile</string>
+    <string name="trending">Trending</string>
+    <string name="map_view">Map View</string>
+    <string name="home">Home</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="mobile_number_one">Mobile Number</string>
+    <string name="save">Save</string>
+    <string name="verified">Verify</string>
+    <string name="be_repoter">Be a Reporter</string>
+    <string name="please_enter_userid">Please enter user id</string>
+
+    <string name="under_construction">Under Construction</string>
+    <string name="error_crash_error_message">Something went wrong please try again later</string>
+    <string name="dealer_verificatrion_fail">Failed to resend otp.</string>
+    <string name="sumit">\@Sumit</string>
+
+    <string name="change_password_success">Password reset successfully.</string>
+    <string name="change_password_failed">Password reset failed.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="follow">Follow</string>
+    <string name="following">Following</string>
+    <string name="people_who_reacted">People who reacted</string>
+    <string name="gallery1">Gallery</string>
+    <string name="camera1">Take Photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="nointernettextview">No internet connection</string>
+    <string name="nointernetretrybtton">Retry</string>
+    <string name="nodatatextview">No data found</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="no_internet_connection">No internet connection</string>
+
+    <string name="retry">Retry</string>
+    <string name="internetmsg1">No Internet Connection</string>
+    <string name="somethigwrong1">Something Went Wrong</string>
+    <string name="error_common_network">Please check your internet connectivity and try again</string>
+    <string name="terms">By signing up you agree to the</string>
+    <string name="terms1"><![CDATA[Terms & Conditions]]></string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="accept_Privacy_Poilicy">Privacy Policy</string>
+    <string name="session_expire">Session expire! Please Login again</string>
+    <string name="change_password">Change Password</string>
+    <string name="change_language">Change Language</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="notifications">Notifications</string>
+    <string name="failed_to_login">Failed to login.</string>
+    <string name="mobile_number_verification_is_required_to_post_news">Mobile Number Verification is required to post news</string>
+
+    <!--client details account :
+    Email: mindhacktechnology@gmail.com
+    Password: Mind@!~Hack-->
+
+<!--    <string name="server_client_id">26825631023-dlh5udej4uo7m210bq5a6ts4o9esf08t.apps.googleusercontent.com</string>-->
+    <string name="server_client_id">218460881708-an8qd2aekvv51l07vf8cdg9pp9rg851l.apps.googleusercontent.com</string>
+    <string name="loading">Loading…</string>
+
+    <!--testlast11@gmail.com-->
+    <!--<string name="facebook_id">3312119545525116</string>-->
+    <string name="facebook_id">1032174874347819</string>
+    <string name="fb_login_protocol_scheme">fb1032174874347819</string>
+    <string name="search_followers">Search Followers</string>
+    <string name="search_following">Search Following</string>
+    <string name="markasallread">Mark all as read</string>
+    <string name="report_account">Report Account</string>
+    <string name="please_enter_old_password">Please enter old password</string>
+    <string name="settings">Settings</string>
+
+    <string name="top_sheet_behavior" translatable="false">com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.TopSheetBehavior</string>
+    <string name="current_location">Current Location</string>
+    <string name="suggested_location">Suggested Location</string>
+    <string name="view_points">Points</string>
+    <string name="post">Post</string>
+    <string name="followers">Followers</string>
+    <string name="grant_access_location">You need to grant access location permission !</string>
+    <string name="read_location_permissions_senied">Read Location Permissions denied</string>
+    <string name="comments">Comments</string>
+    <string name="post_news">Post News</string>
+    <string name="add_headline_minimum_30_charactres">Add Headline(Minimum 5 Characters)</string>
+    <string name="add_description_optional">Add Description(Optional)</string>
+    <string name="_120_characters_left">120 Characters left</string>
+    <string name="tag">\@</string>
+    <string name="hashtag">\#</string>
+    <string name="post_now">Post Now</string>
+    <string name="please_select_another_pic">Please, select another profile pic.</string>
+    <string name="please_select_another_imagefile">Please, select another file.</string>
+    <string name="gallery_photo_video">Gallery Images/Videos</string>
+    <string name="gallery_images">Gallery Images</string>
+    <string name="gallery_videos">Gallery Videos</string>
+    <string name="please_select_image_video">Please select at least  image or video</string>
+
+    <string name="error_processing_places_api">Error processing Places API URL</string>
+    <string name="error_connecting_to_places_api">Error connecting to Places API</string>
+    <string name="error_cannot_process_json_results">Cannot process JSON results</string>
+    <string name="error_lib_not_initialized">Please initialize the api before using it</string>
+    <string name="enter_location">Enter Location</string>
+    <string name="no_comment_list">No comment list found</string>
+    <string name="success_add_commnet">Comment posted successfully</string>
+    <string name="failed_add_commnet">Failed to post comment</string>
+    <string name="success_comment_report">Comment reported successfully</string>
+    <string name="fail_comment_report">Failed to report comment</string>
+    <string name="name">Name</string>
+    <string name="address">Address</string>
+    <string name="points">Points</string>
+    <string name="veify_mobile_number">Please verify your mobile number then you can post the news</string>
+    <string name="add_signature_video">Add Signature Video</string>
+    <string name="signature_video">Signature Video</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <string name="take_video">Take Video</string>
+    <string name="select_image">Select Image</string>
+    <string name="select_video">Select Video</string>
+    <string name="reply">Reply</string>
+    <string name="recent">Recent</string>
+    <string name="top">Top</string>
+    <string name="no_address_found">Post detail not available</string>
+    <string name="fail_delete_notification">Failed to delete notification</string>
+    <string name="err_video_lth_3">You can add only 5 second video</string>
+    <string name="err_video_lth_10">Video\'s duration should be minimum 10 seconds</string>
+
+    <string name="Current_Location">Current Location</string>
+    <string name="Tags">Tags</string>
+    <string name="Places">Places</string>
+    <string name="People">People</string>
+    <string name="Custom">Custom</string>
+    <string name="Nearby_Location">Nearby Location</string>
+    <string name="Search_Tags">Search Tags</string>
+    <string name="please_enter_user_id">Please enter User Id</string>
+    <string name="grant_access_camera">You need to grant access camera permission through setting.</string>
+    <string name="storage_permission_denied">Permission to access storage was denied</string>
+    <string name="error_unsupported_video">Media includes video tracks, but none are playable by this device</string>
+    <string name="error_unsupported_audio">Media includes audio tracks, but none are playable by this device</string>
+    <string name="error_generic">Playback failed</string>
+    <string name="error_querying_decoders">Unable to query device decoders</string>
+    <string name="error_no_decoder">This device does not provide a decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_no_secure_decoder">This dCevice does not provide a secure decoder for <xliff:g id="mime_type">%1$s</xliff:g></string>
+    <string name="error_instantiating_decoder">Unable to instantiate decoder <xliff:g id="decoder_name">%1$s</xliff:g></string>
+    <string name="select_city">Select City</string>
+    <string name="trending_post">Trending Post</string>
+    <string name="verification_link">Verification Link has been sent to your email id</string>
+<!--    <string name="pool_id">ap-south-1:54d4c6fa-634b-4373-98b1-8058d9bbb02c</string>-->
+    <string name="pool_id">ap-south-1:41e396af-cdfd-4aa2-bfc0-a0a35f92c080</string>
+    <string name="nodata1">The Post you are looking for is not active anymore.</string>
+
+
+</resources>

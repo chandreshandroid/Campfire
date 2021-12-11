@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ll_mainOtp"
+    android:background="@color/backgrounddarkcolor"
+    tools:context=".activity.OtpVerificationActivity">
+
+
+
+    <!--    toolbar include-->
+    <include layout="@layout/header_back_with_text" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvVerificationTitledescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please enter one time password you\nreceived on your registered email"
+            android:textAlignment="center"
+            android:textColor="@color/socialbtncolor"
+            android:textSize="@dimen/_16sdp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linearlayout_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvVerificationTitledescription"
+            app:layout_constraintVertical_bias="0.12"
+            tools:layout_editor_absoluteX="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_pin_1"
+                style="@style/Widget.Fusion.TextInputEditText"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/edt_bg_selector"
+                android:backgroundTint="@color/otpUnderlinecolor"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_pin_2"
+                style="@style/Widget.Fusion.TextInputEditText"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:background="@drawable/edt_bg_selector"
+                android:backgroundTint="@color/otpUnderlinecolor"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_pin_3"
+                style="@style/Widget.Fusion.TextInputEditText"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:background="@drawable/edt_bg_selector"
+                android:backgroundTint="@color/otpUnderlinecolor"
+                android:gravity="center"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_pin_4"
+                style="@style/Widget.Fusion.TextInputEditText"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:background="@drawable/edt_bg_selector"
+                android:backgroundTint="@color/otpUnderlinecolor"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.chand.progressbutton.ProgressButton
+            android:id="@+id/btnProceed"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvVerificationTitledescription"
+            app:layout_constraintVertical_bias="0.818"
+            app:p_arrowVisible="false"
+            app:p_backgroundTint="@color/toolbarmaincolor"
+            app:p_cornerRadius="@dimen/_8sdp"
+            app:p_elevation="5.0"
+            app:p_fontFamily="nunito_regular"
+            app:p_progressColor="@color/toolbarmaincolor"
+            app:p_style="progressBar"
+            app:p_text="Verify Code"
+            app:p_textColor="@color/white"
+            app:p_textSize="@dimen/_24sdp"
+            tools:layout_editor_absoluteX="13dp" />
+
+        <LinearLayout
+            android:id="@+id/_youhave_sing_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnProceed">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn’t get code?"
+                android:layout_gravity="center"
+                android:textColor="@color/socialbtncolor"
+                android:textSize="@dimen/_14ssp" />
+
+
+
+            <!--            MaterialButton in id in jagyaye textview in use karvani-->
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvOtpresend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Resend"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sdp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

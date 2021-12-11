@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearlayoutmain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearmain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/friendprofileImageview"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:roundingBorderColor="@color/colorPrimary"
+            app:roundingBorderWidth="1dp"
+            app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+            app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+            app:placeholderImageScaleType="fitXY"
+            app:roundAsCircle="true"
+            app:actualImageScaleType="fitXY"
+            app:roundBottomLeft="true"
+            app:roundBottomRight="true"
+            app:roundTopLeft="true"
+            app:roundTopRight="true"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/friendprofilenameTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Alex Jacobson"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textSize="@dimen/_14ssp" />
+
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

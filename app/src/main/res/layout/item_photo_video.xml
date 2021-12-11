@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvReportTitle"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="@string/gallery_photo_video"
+        android:textSize="@dimen/_18ssp"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center"
+        app:fontFamily="@font/nunito_semibold"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_Gallery_Images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="@string/gallery_images"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_semibold"
+
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_Gallery_Videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        android:text="@string/gallery_videos"
+        android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/nunito_semibold"/>
+</LinearLayout>

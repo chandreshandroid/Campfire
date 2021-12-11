@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:contentDescription="@null">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/purple_curve_square"
+        android:contentDescription="@null">
+    <TextView
+        android:textStyle="bold"
+        android:textSize="@dimen/_16ssp"
+        android:textColor="#FFFF"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:id="@+id/singleClusterMarkerSizeTextView"
+        tools:text="5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</FrameLayout>
+    <!--<androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/itemPostOwnerPostImagePlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/news_post_spot_map_pin_big"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"/>-->
+</LinearLayout>

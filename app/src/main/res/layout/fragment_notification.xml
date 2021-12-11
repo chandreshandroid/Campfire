@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/notificationLayoutMain"
+    android:orientation="vertical"
+    android:background="@color/backgrounddarkcolor">
+
+    <include
+        layout="@layout/header_back_with_text"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/itemNotificationTextMarkAsRead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/textBlack16"
+        tools:text="@string/markasallread"
+        android:fontFamily="@font/nunito_regular"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:visibility="visible"
+        android:textColor="@color/otpUnderlinecolor"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_5sdp"
+        />
+
+    <include
+        layout="@layout/generallistlayout"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

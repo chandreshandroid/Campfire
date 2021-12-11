@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.FeedFragment">
+
+    <RelativeLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_frame">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/map_container">
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cameraTargetLat="23.0225"
+                app:cameraTargetLng="72.5714"
+                app:cameraZoom="18"
+                app:mapType="normal" />
+
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/ivAddPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_news_add"
+            android:layout_above="@+id/bottom"
+            android:layout_margin="@dimen/_20sdp"
+            android:layout_alignParentRight="true"/>
+        <RelativeLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:id="@+id/rl_bottomView"
+                android:layout_marginBottom="@dimen/_40sdp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/msgButton"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="@dimen/_300sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:background="@color/colorPrimary"
+                    android:fontFamily="@font/nunito_light"
+                    android:gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/error_common_network"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    android:textColor="@color/white"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/colorError"
+                    app:cornerRadius="@dimen/_8sdp"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/centerMapFab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="right|bottom"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:visibility="visible"
+                    app:backgroundTint="@color/white"
+                    app:fabSize="mini"
+                    app:srcCompat="@drawable/ic_my_location_black_24dp" />
+
+            </RelativeLayout>
+            <FrameLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/childFrame"
+                android:layout_below="@+id/rl_bottomView"
+                />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+    <include layout="@layout/new_header_icon_text"/>
+
+
+
+    <include
+        layout="@layout/nodatafound"/>
+
+    <include layout="@layout/nointernetconnection" />
+
+    <include layout="@layout/progressbar" />
+
+    <!--<fragment
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    />-->
+</RelativeLayout>

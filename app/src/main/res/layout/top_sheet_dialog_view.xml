@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSurface">
+   <com.google.android.material.internal.BaselineLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark" />
+       <androidx.cardview.widget.CardView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:cardUseCompatPadding="true"
+           android:layout_marginTop="-3dp"
+           app:cardElevation="@dimen/_2sdp"
+           >
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/ll_suggestion_height"
+        android:background="@color/colorSurface">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
+            android:background="@color/colorPrimary"
+
+            >
+            <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                android:focusableInTouchMode="true"
+                android:id="@+id/searchView"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                app:corner_radius="@dimen/_2sdp">
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:layout_marginLeft="@dimen/_15sdp"-->
+<!--                    android:layout_gravity="center_vertical"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/search_icon_search_bar_light_grey"/>-->
+
+                <AutoCompleteTextView
+                    android:id="@+id/editSearch"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:hint="Search Place"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxLength="50"
+                    android:drawableLeft="@drawable/search_icon_search_bar_light_grey"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:imeOptions="actionDone"
+                    android:textColorHint="#787878"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_regular"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img_clear_edit_text"
+                    android:layout_width="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/close_icon_onboarding"/>
+            </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/textBlack16"
+            android:text="@string/current_location"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:fontFamily="@font/nunito_semibold"
+            android:id="@+id/tv_current_selectLocation"
+            android:textColor="@color/text_black_1"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            app:fontFamily="@font/nunito_light"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+
+            android:drawablePadding="@dimen/_10sdp"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/location_pin_icon_header"
+            android:maxLines="1"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/textBlack16"
+            android:text="@string/suggested_location"
+            android:textSize="@dimen/_14ssp"
+            android:id="@+id/suggestedLocation"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textColor="@color/text_black_1"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            app:fontFamily="@font/nunito_light"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:scrollbars="none"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+       </androidx.cardview.widget.CardView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

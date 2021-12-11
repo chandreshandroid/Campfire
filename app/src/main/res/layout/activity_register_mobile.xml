@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/registerMobileLayoutMain">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgrounddarkcolor">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/header_back_with_text_space" />
+
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/singinTextviewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please enter registered mobile number\nto received one time password"
+            android:textAlignment="center"
+            android:textSize="@dimen/_18sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintVertical_bias="0.079" />
+
+        <com.chand.progressbutton.ProgressButton
+            android:id="@+id/SingUpverificationTruecaller"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            style="@style/ButtonStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.049"
+            app:p_arrowVisible="false"
+            app:p_backgroundTint="@color/toolbarmaincolor"
+            app:p_cornerRadius="@dimen/_8sdp"
+            app:p_elevation="5.0"
+            app:p_fontFamily="nunito_regular"
+            app:p_progressColor="@color/toolbarmaincolor"
+            app:p_style="progressBar"
+            app:p_text="Verify to truecaller"
+            app:p_textColor="@color/white"
+            app:p_textSize="@dimen/_22ssp"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <LinearLayout
+            android:id="@+id/llsingupmoblieVerified"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SingUpverificationTruecaller"
+            app:layout_constraintVertical_bias="0.058"
+            tools:layout_editor_absoluteX="-29dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_weight="1"
+                android:src="@drawable/linebackground"
+                android:visibility="visible"
+                app:tint="@color/socialbtncolor" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:src="@drawable/linebackground"
+                android:text="Or Sign In with"
+                android:textColor="@color/socialbtncolor" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_2sdp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_weight="1"
+                android:src="@drawable/linebackground"
+                app:tint="@color/socialbtncolor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llsingupmoblieVerified"
+            app:layout_constraintVertical_bias="0.092"
+            tools:layout_editor_absoluteX="-14dp">
+
+            <TextView
+                android:id="@+id/mobileno_text_input"
+                style="@style/singinTextviewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mobile_number_one" />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/registerMobileInputTypeMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="false"
+                    app:hintEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/registerMobileEditMobile"
+                        style="@style/singinInputEditviewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:focusable="true"
+                        android:hint="+91 00000 00000"
+                        android:focusedByDefault="true"
+                        android:maxLength="14"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMobile_info"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:drawablePadding="@dimen/_8sdp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.internal.BaselineLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.58dp"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:background="@color/white" />
+        </LinearLayout>
+
+        <com.chand.progressbutton.ProgressButton
+            android:id="@+id/registerMobileButtonContinue"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_55sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
+            app:layout_constraintVertical_bias="0.099"
+            app:p_arrowVisible="false"
+            app:p_backgroundTint="@color/toolbarmaincolor"
+            app:p_cornerRadius="@dimen/_8sdp"
+            app:p_elevation="5.0"
+            app:p_fontFamily="nunito_regular"
+            app:p_progressColor="@color/toolbarmaincolor"
+            app:p_style="progressBar"
+            app:p_text="Verify Number"
+            app:p_textColor="@color/white"
+            app:p_textSize="@dimen/_22ssp"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

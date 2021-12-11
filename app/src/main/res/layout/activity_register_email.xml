@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/registerEmailLayoutMain"
+    android:background="@color/backgrounddarkcolor">
+
+    <include layout="@layout/header_back_with_text"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/registerEmail_text_input"
+                style="@style/singinTextviewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Id">
+
+            </TextView>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/imgdropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/registerEmailEditEmail"
+                    style="@style/singinInputEditviewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    tools:text="enya.zelaya@gmail.com" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvVerified"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:drawableStart="@drawable/verified_email_icon"
+                    android:drawablePadding="@dimen/_8sdp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textColor="@color/colorOnError"
+                    android:textSize="@dimen/_16ssp" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.internal.BaselineLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.58dp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:background="@color/white" />
+        </LinearLayout>
+
+           </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    <com.chand.progressbutton.ProgressButton
+        android:id="@+id/registerEmailButtonContinue"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:elevation="@dimen/_4sdp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunito_regular"
+        android:letterSpacing="0"
+        app:p_backgroundTint="@color/bg_button"
+        app:p_cornerRadius="@dimen/_10sdp"
+        app:p_fontFamily="nunito_regular"
+        app:p_elevation="5.0"
+        app:p_style="progressBar"
+        app:p_textColor="@color/white"
+        app:p_text="@string/next"
+        app:p_textSize="@dimen/_26ssp"
+        app:p_progressColor="@color/bg_button"
+        app:p_arrowVisible="false"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

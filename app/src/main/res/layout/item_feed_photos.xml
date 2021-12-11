@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_200sdp"
+    android:keepScreenOn="true"
+    android:background="@drawable/relative_layout_background"
+    android:clickable="false"
+    android:focusable="false">
+    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+        android:focusableInTouchMode="true"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:background="@color/white"
+        app:bottom_left_corner_radius="@dimen/_15sdp"
+        app:bottom_right_corner_radius="@dimen/_15sdp"
+        >
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/imv_feed_photo"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        app:roundingBorderColor="@color/colorPrimary"
+        app:roundingBorderWidth="1dp"
+        app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+        app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
+        app:placeholderImageScaleType="fitXY"
+        app:actualImageScaleType="fitXY"
+        app:roundBottomLeft="true"
+        app:roundBottomRight="true"
+        app:roundTopLeft="true"
+        app:roundTopRight="true"
+        />
+    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+</RelativeLayout>
+
+

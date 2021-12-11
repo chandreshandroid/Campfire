@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootAddSignatureLayoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgrounddarkcolor"
+    android:orientation="vertical"
+    tools:context=".fragment.AddSignutreVideoFragment">
+
+    <include layout="@layout/header_back_with_text" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/_2sdp"
+                android:id="@+id/cardViewVideo"
+                android:visibility="gone"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:strokeColor="@color/white">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <com.jcminarro.roundkornerlayout.RoundKornerLinearLayout
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/searchView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        app:bottom_left_corner_radius="@dimen/_15sdp"
+                        app:bottom_right_corner_radius="@dimen/_15sdp"
+                        >
+                    <RelativeLayout
+                        android:id="@+id/rvVideo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:keepScreenOn="true"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <com.google.android.exoplayer2.ui.PlayerView
+                            android:id="@+id/exoPlayer1"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            android:background="@color/black"
+                            android:minHeight="@dimen/_200sdp"
+                            app:auto_show="true"
+                            app:controller_layout_id="@layout/exo_playback_control_view_crate_post"
+                            app:hide_on_touch="false"
+                            app:resize_mode="fit"
+                            app:surface_type="texture_view"
+                            app:use_controller="true" />
+
+                        <com.facebook.drawee.view.SimpleDraweeView
+                            android:id="@+id/thumnail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_200sdp"
+                            android:layout_centerInParent="true"
+                            android:background="@color/black"
+                            app:actualImageScaleType="centerCrop" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/playicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/play_btn_overlay_on_video_on_home" />
+
+
+                        <ProgressBar
+                            android:id="@+id/pb"
+                            android:layout_width="@dimen/_50sdp"
+                            android:layout_height="@dimen/_50sdp"
+                            android:layout_centerInParent="true"
+                            android:indeterminateTint="@color/white"
+                            android:visibility="gone"
+
+                            />
+
+
+                    </RelativeLayout>
+                    </com.jcminarro.roundkornerlayout.RoundKornerLinearLayout>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/editicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:src="@drawable/ic_edit_black_24dp" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/deleteicon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/ic_delete_black_24dp" />
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/ll_add_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddSignatureVideo"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:background="@drawable/btn_shadow_bg"
+                android:elevation="@dimen/_4sdp"
+                android:fontFamily="@font/nunito_regular"
+                android:gravity="center"
+                android:letterSpacing="0"
+                android:text="@string/add_signature_video"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFeedClapCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nunito_regular"
+                android:padding="@dimen/_5sdp"
+                android:text="This Video will be merge with all your post"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_add_video_server"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+
+                <com.chand.progressbutton.ProgressButton
+                    android:id="@+id/btnCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:letterSpacing="0"
+                    android:textAllCaps="false"
+                    app:p_arrowVisible="false"
+                    android:visibility="gone"
+                    app:p_backgroundTint="@color/bg_button"
+                    app:p_cornerRadius="@dimen/_25sdp"
+                    app:p_elevation="5.0"
+                    app:p_fontFamily="nunito_regular"
+                    app:p_progressColor="@color/bg_button"
+                    app:p_style="progressBar"
+                    app:p_text="Cancel"
+                    app:p_textColor="@color/white"
+                    app:p_textSize="@dimen/_18sdp" />
+
+                <com.chand.progressbutton.ProgressButton
+                    android:id="@+id/btnAddSignatureVideoServer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:elevation="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:letterSpacing="0"
+                    android:textAllCaps="false"
+                    app:p_arrowVisible="false"
+                    app:p_backgroundTint="@color/bg_button"
+                    app:p_cornerRadius="@dimen/_25sdp"
+                    app:p_elevation="5.0"
+                    app:p_fontFamily="nunito_regular"
+                    app:p_progressColor="@color/bg_button"
+                    app:p_style="progressBar"
+                    app:p_text="Add This Video"
+                    app:p_textColor="@color/white"
+                    app:p_textSize="@dimen/_18sdp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
