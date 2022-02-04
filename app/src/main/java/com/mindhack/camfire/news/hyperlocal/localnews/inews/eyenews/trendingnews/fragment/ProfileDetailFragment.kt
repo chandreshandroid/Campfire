@@ -487,7 +487,7 @@ class ProfileDetailFragment : Fragment(), View.OnClickListener {
         profileDetailTextUserTagName.text = "@${userData1?.userMentionID}"
         if (!userData1?.userProfilePicture.isNullOrEmpty())
             profile_imv_dp.setImageURI(RestClient.image_base_url_users + userData1?.userProfilePicture)
-
+        profileDetailTextUserBio.text = userData1?.userBio
         profileDetailTextUserPostCount.text = userData1?.userTotalPost
         profileDetailTextUserFollowersCount.text = userData1?.userTotalFollower
         profileDetailTextUserFollowingCount.text = userData1?.userTotalFollowing

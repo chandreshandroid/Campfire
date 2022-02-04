@@ -77,7 +77,7 @@ class MediaChooseImageBottomsheet() : DialogFragment(){
 
     override fun onStart() {
         super.onStart()
-
+        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog?.window?.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
     }
 

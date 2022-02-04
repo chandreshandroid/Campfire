@@ -26,13 +26,13 @@
         <ImageView
             android:id="@+id/vectorImg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_220sdp"
             android:src="@drawable/vector_otp_verification"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.038" />
+            android:layout_marginTop="@dimen/_10sdp"
+            />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvVerificationTitledescription"
@@ -43,9 +43,9 @@
             android:textColor="@color/socialbtncolor"
             android:textSize="@dimen/_16sdp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/vectorImg"
-            app:layout_constraintVertical_bias="0.169"
+            android:layout_marginTop="@dimen/_10sdp"
             tools:layout_editor_absoluteX="0dp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -55,9 +55,9 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvVerificationTitledescription"
-            app:layout_constraintVertical_bias="0.12"
+            android:layout_marginTop="@dimen/_20sdp"
             tools:layout_editor_absoluteX="0dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -129,9 +129,9 @@
             style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvVerificationTitledescription"
-            app:layout_constraintVertical_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearlayout_otp"
+            android:layout_marginTop="@dimen/_30sdp"
             app:p_arrowVisible="false"
             app:p_backgroundTint="@color/toolbarmaincolor"
             app:p_cornerRadius="@dimen/_8sdp"
@@ -150,9 +150,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginTop="@dimen/_25sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnProceed">
 
@@ -173,9 +172,10 @@
                 android:id="@+id/tvOtpresend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  Resend"
+                android:text="Resend"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp" />
 

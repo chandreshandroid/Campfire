@@ -351,7 +351,7 @@ class CameraActivitySignatureKotlin : AppCompatActivity(), View.OnClickListener,
             object : LocationProvider.CurrentLocationCallback {
                 override fun handleNewLocation(location: Location) {
 
-                    Log.d("currentLocation", location.toString())
+                   // Log.d("currentLocation", location.toString())
 
                     locationProvider?.disconnect()
 //                    MyUtils.currentLattitude=location.latitude

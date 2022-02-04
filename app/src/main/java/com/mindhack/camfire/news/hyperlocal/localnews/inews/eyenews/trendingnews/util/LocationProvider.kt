@@ -42,7 +42,7 @@ class LocationProvider( val mContext: Context, locationPriority: Int, val curren
      * settings to determine if the device has optimal location settings.
      */
     private var mLocationSettingsRequest: LocationSettingsRequest? = null
-    private  val Two_SECOND: Long = 2000
+    private  val Two_SECOND: Long = 200000
 
 
     init {
@@ -105,11 +105,11 @@ class LocationProvider( val mContext: Context, locationPriority: Int, val curren
         // inexact. You may not receive updates at all if no location sources are available, or
         // you may receive them slower than requested. You may also receive updates faster than
         // requested if other applications are requesting location at a faster interval.
-        mLocationRequest.interval =1000
+        mLocationRequest.interval =100000
 
         // Sets the fastest rate for active location updates. This interval is exact, and your
         // application will never receive updates faster than this value.
-        mLocationRequest.fastestInterval =1000
+        mLocationRequest.fastestInterval =100000
 
 
 
@@ -125,7 +125,6 @@ class LocationProvider( val mContext: Context, locationPriority: Int, val curren
     }
 
     fun connect() {
-
         startLocationUpdates()
     }
 

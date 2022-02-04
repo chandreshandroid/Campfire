@@ -294,7 +294,7 @@ class CameraActivityKotlin : AppCompatActivity(), View.OnClickListener, OptionVi
                 longitude,
                 1
             )
-            if (addresses != null) {
+            if (!addresses.isNullOrEmpty()) {
                 MyUtils.locationCityName =
                     addresses[0].locality + ", " + addresses[0].adminArea + ", " + addresses[0].countryName
                 MyUtils.locationCityNameFix =
@@ -335,7 +335,7 @@ class CameraActivityKotlin : AppCompatActivity(), View.OnClickListener, OptionVi
             object : LocationProvider.CurrentLocationCallback {
                 override fun handleNewLocation(location: Location) {
 
-                    Log.d("currentLocation", location.toString())
+                    //Log.d("currentLocation", location.toString())
 
                     locationProvider?.disconnect()
 //                    MyUtils.currentLattitude=location.latitude

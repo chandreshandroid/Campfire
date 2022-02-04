@@ -2,7 +2,6 @@ package com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnew
 
 import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.SpannableStringBuilder
@@ -14,9 +13,13 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.iid.FirebaseInstanceId
+import com.google.gson.Gson
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.R
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.model.OnBoardingModel
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.pojo.RegisterPojo
@@ -25,9 +28,6 @@ import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.GetDynamicStringDictionaryObjectClass
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.MyUtils
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.SessionManager
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.iid.FirebaseInstanceId
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_ragister_profile.*
 import kotlinx.android.synthetic.main.activity_register_password.*
 import kotlinx.android.synthetic.main.activity_register_password.registerPasswordButtonContinue
@@ -64,10 +64,10 @@ class RegisterPasswordActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        );
+        window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
         setContentView(R.layout.activity_register_password)
 
         dynamicLable()
@@ -80,29 +80,29 @@ class RegisterPasswordActivity : AppCompatActivity() {
             objRegister = intent.getSerializableExtra(keyRequestObj) as RequestRegisterPojo
 
         isSocial = if (intent.hasExtra(keyIsSocial) && intent.getBooleanExtra(
-                keyIsSocial,
-                false
-            ) != null
+                        keyIsSocial,
+                        false
+                ) != null
         ) intent.getBooleanExtra(keyIsSocial, false) else false
 
-        registerPasswordEditPassword?.setHint("" + GetDynamicStringDictionaryObjectClass?.Passwrod)
+        // registerPasswordEditPassword?.setHint("" + GetDynamicStringDictionaryObjectClass?.Passwrod)
         registerPasswordButtonContinue?.progressText =
-            ("" + GetDynamicStringDictionaryObjectClass?.Sign_Up)
+                ("" + GetDynamicStringDictionaryObjectClass.Sign_Up)
 // pending customerTextView
         customTextView(tv_signup_terms)
 
-        tvHeaderText.text = GetDynamicStringDictionaryObjectClass?.registration
+        tvHeaderText.text = GetDynamicStringDictionaryObjectClass.registration
 
         imgCloseIcon.setOnClickListener {
             onBackPressed()
         }
 
-        if (MyUtils.userRegisterData != null) {
-            if (!MyUtils.userRegisterData.userPassword.isNullOrEmpty()) registerPasswordEditPassword?.setText(
-                MyUtils.userRegisterData.userPassword
-            )
-            registerPasswordEditPassword?.setSelection(registerPasswordEditPassword?.text?.length!!)
-        }
+        /*  if (MyUtils.userRegisterData != null) {
+              if (!MyUtils.userRegisterData.userPassword.isNullOrEmpty()) registerPasswordEditPassword?.setText(
+                  MyUtils.userRegisterData.userPassword
+              )
+              registerPasswordEditPassword?.setSelection(registerPasswordEditPassword?.text?.length!!)
+          }*/
 
 
         /* registerPasswordEditPassword?.addTextChangedListener(object : TextWatcher {
@@ -171,22 +171,22 @@ class RegisterPasswordActivity : AppCompatActivity() {
             objRegister?.userPassword = registerPasswordEditPassword?.text.toString()
             if (MyUtils.userRegisterData != null) {
                 MyUtils.userRegisterData.userPassword =
-                    registerPasswordEditPassword?.text.toString()
+                        registerPasswordEditPassword?.text.toString()
             }
 
             FirebaseInstanceId.getInstance().instanceId
-                .addOnCompleteListener(OnCompleteListener { task ->
-                    if (!task.isSuccessful) {
-                        return@OnCompleteListener
-                    }
+                    .addOnCompleteListener(OnCompleteListener { task ->
+                        if (!task.isSuccessful) {
+                            return@OnCompleteListener
+                        }
 //            val newtoken = "abcg3343nsdjhskd2jl"
-                    val newtoken = task.result?.token
-                                    if (MyUtils.isInternetAvailable(this@RegisterPasswordActivity)){
-                    userRegister(newtoken!!)
-                                    }else{
-                                        MyUtils.showSnackbarkotlin(this@RegisterPasswordActivity, registerPasswordLayoutMain!!, resources.getString(R.string.error_common_network))
-                                    }
-                })
+                        val newtoken = task.result?.token
+                        if (MyUtils.isInternetAvailable(this@RegisterPasswordActivity)) {
+                            userRegister(newtoken!!)
+                        } else {
+                            MyUtils.showSnackbarkotlin(this@RegisterPasswordActivity, registerPasswordLayoutMain!!, resources.getString(R.string.error_common_network))
+                        }
+                    })
 
 
         }
@@ -197,9 +197,9 @@ class RegisterPasswordActivity : AppCompatActivity() {
 
         if (MyUtils.userRegisterData != null) {
             MyUtils.userRegisterData.userPassword =
-                if (!registerPasswordEditPassword?.text.toString()
-                        .isNullOrEmpty()
-                ) registerPasswordEditPassword?.text.toString() else ""
+                    if (!registerPasswordEditPassword?.text.toString()
+                                    .isNullOrEmpty()
+                    ) registerPasswordEditPassword?.text.toString() else ""
         }
 
         MyUtils.hideKeyboard1(this@RegisterPasswordActivity)
@@ -210,14 +210,14 @@ class RegisterPasswordActivity : AppCompatActivity() {
 
     private fun showAlert() {
         MyUtils.showMessageOKCancel(
-            this@RegisterPasswordActivity,
-            resources.getString(R.string.msg_alert_data_loss),
-            object : DialogInterface.OnClickListener {
-                override fun onClick(dialog: DialogInterface?, which: Int) {
-                    dialog?.dismiss()
-                    finish()
-                }
-            })
+                this@RegisterPasswordActivity,
+                resources.getString(R.string.msg_alert_data_loss),
+                object : DialogInterface.OnClickListener {
+                    override fun onClick(dialog: DialogInterface?, which: Int) {
+                        dialog?.dismiss()
+                        finish()
+                    }
+                })
     }
 
     private fun dynamicLable() {
@@ -227,18 +227,18 @@ class RegisterPasswordActivity : AppCompatActivity() {
         msg_valid_password = resources.getString(R.string.err_valid_password)
 
         msgFailToRegister = "Failed to login if you have any query please contact to admin."
-        msgSomthingRong = GetDynamicStringDictionaryObjectClass?.Something_Went_Wrong
-        msgNoInternet = GetDynamicStringDictionaryObjectClass?.No_Internet_Connection
+        msgSomthingRong = GetDynamicStringDictionaryObjectClass.Something_Went_Wrong
+        msgNoInternet = GetDynamicStringDictionaryObjectClass.No_Internet_Connection
         msgFailToVerify = "Failed to verify mobile number."
         msgFailToResen = resources.getString(R.string.dealer_verificatrion_fail)
         msgSuccessRegister = "Registration successfully."
         msg_accept_terms = "Please accept terms and conditions."
 
         title_bySigninup =
-            GetDynamicStringDictionaryObjectClass?.By_signing_up_you_agree_with_the + " "
-        title_terms = GetDynamicStringDictionaryObjectClass?.Terms_Conditions
-        title_privacyPolicy = GetDynamicStringDictionaryObjectClass?.Privacy_Prolicy
-        title_andConact = " " + GetDynamicStringDictionaryObjectClass?.and + " "
+                GetDynamicStringDictionaryObjectClass.By_signing_up_you_agree_with_the + " "
+        title_terms = GetDynamicStringDictionaryObjectClass.Terms_Conditions
+        title_privacyPolicy = GetDynamicStringDictionaryObjectClass.Privacy_Prolicy
+        title_andConact = " " + GetDynamicStringDictionaryObjectClass.and + " "
 
 //        title_bySigninup = this@RegisterPasswordActivity.resources.getString(R.string.terms)  + " "
 //        title_terms = this@RegisterPasswordActivity.resources.getString(R.string.terms1)
@@ -251,16 +251,16 @@ class RegisterPasswordActivity : AppCompatActivity() {
         if (!isSocial && registerPasswordEditPassword.text.toString().trim().isNullOrEmpty()) {
             checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterPasswordActivity,
-                registerPasswordLayoutMain,
-                msg_no_password
+                    this@RegisterPasswordActivity,
+                    registerPasswordLayoutMain,
+                    msg_no_password
             )
         } else if (!isSocial && registerPasswordEditPassword.text.toString().trim().length < 6) {
             checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterPasswordActivity,
-                registerPasswordLayoutMain,
-                msg_password_leth_8
+                    this@RegisterPasswordActivity,
+                    registerPasswordLayoutMain,
+                    msg_password_leth_8
             )
         }/*else if (!isSocial && !MyUtils.isValidPassword(registerPasswordEditPassword.text.toString().trim())){
             checkFlag = false
@@ -268,9 +268,9 @@ class RegisterPasswordActivity : AppCompatActivity() {
         }*/ else if (!signup_checkbox_terms.isChecked) {
             checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterPasswordActivity,
-                registerPasswordLayoutMain,
-                msg_accept_terms
+                    this@RegisterPasswordActivity,
+                    registerPasswordLayoutMain,
+                    msg_accept_terms
             )
         }
         return checkFlag
@@ -289,141 +289,154 @@ class RegisterPasswordActivity : AppCompatActivity() {
             objRegister?.userProfilePicture = ""
             objRegister?.userDeviceID = newtoken
 
-        }else{
-            Toast.makeText(applicationContext,"Else : ",Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(applicationContext, "Else : ", Toast.LENGTH_SHORT).show()
         }
         val jsonArray = JSONArray()
         val jsonObject = JSONObject()
 
-            jsonObject.put("apiType", RestClient.apiType)
-            jsonObject.put("apiVersion", RestClient.apiVersion)
-            jsonObject.put("languageID", objRegister?.languageID)
-            jsonObject.put("userCountryCode", objRegister?.userCountryCode)
-            jsonObject.put("userDeviceID", objRegister?.userDeviceID)
-            jsonObject.put("userDeviceType", objRegister?.userDeviceType)
-            jsonObject.put("userEmail", objRegister?.userEmail)
-            jsonObject.put("userFirstName", objRegister?.userFirstName)
-            jsonObject.put("userLastName", objRegister?.userLastName)
-            jsonObject.put("userMobile", objRegister?.userMobile)
-            jsonObject.put("userPassword", objRegister?.userPassword)
-            jsonObject.put("userMentionID", objRegister?.userMentionID)
-            jsonObject.put("userProfilePicture", objRegister?.userProfilePicture)
-            jsonObject.put("userBio", objRegister?.userBio)
-            jsonObject.put("userDOB", objRegister?.userDOB)
-            jsonArray.put(jsonObject)
+        jsonObject.put("apiType", RestClient.apiType)
+        jsonObject.put("apiVersion", RestClient.apiVersion)
+        jsonObject.put("languageID", objRegister?.languageID)
+        jsonObject.put("userCountryCode", "+91")
+        jsonObject.put("userDeviceID", objRegister?.userDeviceID)
+        jsonObject.put("userDeviceType", objRegister?.userDeviceType)
+        jsonObject.put("userEmail", objRegister?.userEmail)
+        jsonObject.put("userFirstName", objRegister?.userFirstName)
+        jsonObject.put("userLastName", objRegister?.userLastName)
+        jsonObject.put("userMobile", objRegister?.userMobile!!.replace("+91 ", ""))
+        jsonObject.put("userPassword", objRegister?.userPassword)
+        jsonObject.put("userMentionID", objRegister?.userMentionID)
+        jsonObject.put("userProfilePicture", objRegister?.userProfilePicture)
+        jsonObject.put("userBio", objRegister?.userBio)
+        jsonObject.put("userDOB", objRegister?.userDOB)
+        when {
+            !objRegister?.userGoogleID.isNullOrEmpty() -> {
+                jsonObject.put("userGoogleID", objRegister?.userGoogleID)
+                jsonObject.put("userFBID", "")
+                jsonObject.put("userTwiterID", "")
+            }
+            !objRegister?.userFBID.isNullOrEmpty() -> {
+                jsonObject.put("userGoogleID", "")
+                jsonObject.put("userFBID", !objRegister?.userFBID.isNullOrEmpty())
+                jsonObject.put("userTwiterID", "")
+            }
+
+        }
+        jsonArray.put(jsonObject)
 
 
-            Log.w("SagarSagar2",""+objRegister?.userEmail);
-            Log.w("SagarSagar2",""+objRegister?.userFirstName);
-            Log.w("SagarSagar2",""+objRegister?.userLastName);
-            Log.w("SagarSagar2",""+objRegister?.userMobile);
-            Log.w("SagarSagar2",""+objRegister?.userPassword);
-            Log.w("SagarSagar2",""+objRegister?.userMentionID);
-            Log.w("SagarSagar2",""+objRegister?.userProfilePicture);
-            Log.w("SagarSagar2",""+objRegister?.userBio);
-            Log.w("SagarSagar2",""+objRegister?.userDOB);
+        Log.w("SagarSagar2", "" + objRegister?.userEmail)
+        Log.w("SagarSagar2", "" + objRegister?.userFirstName)
+        Log.w("SagarSagar2", "" + objRegister?.userLastName)
+        Log.w("SagarSagar2", "" + objRegister?.userMobile)
+        Log.w("SagarSagar2", "" + objRegister?.userPassword)
+        Log.w("SagarSagar2", "" + objRegister?.userMentionID)
+        Log.w("SagarSagar2", "" + objRegister?.userProfilePicture)
+        Log.w("SagarSagar2", "" + objRegister?.userBio)
+        Log.w("SagarSagar2", "" + objRegister?.userDOB)
 
         val verifyOTP = ViewModelProviders.of(this@RegisterPasswordActivity)
-            .get(OnBoardingModel::class.java)
+                .get(OnBoardingModel::class.java)
 
         verifyOTP.apiCall(this@RegisterPasswordActivity, jsonArray.toString(), 0)
-            .observe(this@RegisterPasswordActivity, object : Observer<List<RegisterPojo>?> {
-                override fun onChanged(response: List<RegisterPojo>?) {
+                .observe(this@RegisterPasswordActivity, object : Observer<List<RegisterPojo>?> {
+                    override fun onChanged(response: List<RegisterPojo>?) {
 
-                    if (!response.isNullOrEmpty()) {
-                        if (registerPasswordButtonContinue?.isStartAnim!!) registerPasswordButtonContinue.endAnimation()
+                        if (!response.isNullOrEmpty()) {
+                            if (registerPasswordButtonContinue?.isStartAnim!!) registerPasswordButtonContinue.endAnimation()
 
-                        if (response[0].status.equals("true", true)) {
-                            MyUtils.hideKeyboard1(this@RegisterPasswordActivity)
+                            if (response[0].status.equals("true", true)) {
+                                MyUtils.hideKeyboard1(this@RegisterPasswordActivity)
 
-                            if (!response[0].data.isNullOrEmpty()) {
-                                sessionManager?.clear_login_session()
-                                storeSessionManager(response[0]?.data!!)
+                                if (!response[0].data.isNullOrEmpty()) {
+                                    sessionManager?.clear_login_session()
+                                    storeSessionManager(response[0].data!!)
 
-                                Handler().postDelayed({
+                                    Handler().postDelayed({
 
-                                    if (!objRegister?.userMobile.isNullOrEmpty()) {
+                                        if (!objRegister?.userMobile.isNullOrEmpty()) {
 
-                                        objRegister?.userId = response[0]?.data!![0]?.userID
+                                            objRegister?.userId = response[0].data!![0].userID
 
-                                        val myIntent = Intent(
-                                            this@RegisterPasswordActivity,
-                                            MainActivity::class.java
-                                        )
-                                        myIntent.putExtra("from", "password")
-                                        myIntent.putExtra(keyRequestObj, objRegister)
-                                        myIntent.putExtra(keyIsSocial, isSocial)
-                                        startActivity(myIntent)
-                                        finishAffinity()
-                                        overridePendingTransition(
-                                            R.anim.slide_in_right,
-                                            R.anim.slide_out_left
-                                        )
-                                    } else {
-                                        val myIntent = Intent(
-                                            this@RegisterPasswordActivity,
-                                            MainActivity::class.java
-                                        )
-                                        myIntent.putExtra("from", "MyProfileEdit")
-                                        startActivity(myIntent)
-                                        finishAffinity()
-                                        overridePendingTransition(
-                                            R.anim.slide_in_right,
-                                            R.anim.slide_out_left
-                                        )
-                                    }
-                                }, 500)
-                                MyUtils.userRegisterData = RequestRegisterPojo()
-
-                            } else {
-                                MyUtils.showMessageOK(
-                                    this@RegisterPasswordActivity,
-                                    msgFailToRegister,
-                                    object : DialogInterface.OnClickListener {
-                                        override fun onClick(dialog: DialogInterface?, which: Int) {
-                                            dialog?.dismiss()
+                                            val myIntent = Intent(
+                                                    this@RegisterPasswordActivity,
+                                                    MainActivity::class.java
+                                            )
+                                            myIntent.putExtra("from", "password")
+                                            myIntent.putExtra(keyRequestObj, objRegister)
+                                            myIntent.putExtra(keyIsSocial, isSocial)
+                                            startActivity(myIntent)
                                             finishAffinity()
+                                            overridePendingTransition(
+                                                    R.anim.slide_in_right,
+                                                    R.anim.slide_out_left
+                                            )
+                                        } else {
+                                            val myIntent = Intent(
+                                                    this@RegisterPasswordActivity,
+                                                    MainActivity::class.java
+                                            )
+                                            myIntent.putExtra("from", "MyProfileEdit")
+                                            startActivity(myIntent)
+                                            finishAffinity()
+                                            overridePendingTransition(
+                                                    R.anim.slide_in_right,
+                                                    R.anim.slide_out_left
+                                            )
                                         }
-                                    })
-                            }
-                        } else {
+                                    }, 500)
+                                    MyUtils.userRegisterData = RequestRegisterPojo()
 
-                            //No data and no internet
+                                } else {
+                                    MyUtils.showMessageOK(
+                                            this@RegisterPasswordActivity,
+                                            msgFailToRegister,
+                                            object : DialogInterface.OnClickListener {
+                                                override fun onClick(dialog: DialogInterface?, which: Int) {
+                                                    dialog?.dismiss()
+                                                    finishAffinity()
+                                                }
+                                            })
+                                }
+                            } else {
+
+                                //No data and no internet
+                                if (MyUtils.isInternetAvailable(this@RegisterPasswordActivity)) {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterPasswordActivity,
+                                            registerPasswordLayoutMain,
+                                            response[0].message
+                                    )
+                                } else {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterPasswordActivity,
+                                            registerPasswordLayoutMain,
+                                            msgNoInternet
+                                    )
+                                }
+                            }
+
+                        } else {
+                            if (registerPasswordButtonContinue?.isStartAnim!!) registerPasswordButtonContinue.endAnimation()
+
+                            //No internet and somting went rong
                             if (MyUtils.isInternetAvailable(this@RegisterPasswordActivity)) {
                                 MyUtils.showSnackbarkotlin(
-                                    this@RegisterPasswordActivity,
-                                    registerPasswordLayoutMain,
-                                    response[0].message!!
+                                        this@RegisterPasswordActivity,
+                                        registerPasswordLayoutMain,
+                                        msgSomthingRong
                                 )
                             } else {
                                 MyUtils.showSnackbarkotlin(
-                                    this@RegisterPasswordActivity,
-                                    registerPasswordLayoutMain,
-                                    msgNoInternet
+                                        this@RegisterPasswordActivity,
+                                        registerPasswordLayoutMain,
+                                        msgNoInternet
                                 )
                             }
                         }
-
-                    } else {
-                        if (registerPasswordButtonContinue?.isStartAnim!!) registerPasswordButtonContinue.endAnimation()
-
-                        //No internet and somting went rong
-                        if (MyUtils.isInternetAvailable(this@RegisterPasswordActivity)) {
-                            MyUtils.showSnackbarkotlin(
-                                this@RegisterPasswordActivity,
-                                registerPasswordLayoutMain,
-                                msgSomthingRong
-                            )
-                        } else {
-                            MyUtils.showSnackbarkotlin(
-                                this@RegisterPasswordActivity,
-                                registerPasswordLayoutMain,
-                                msgNoInternet
-                            )
-                        }
                     }
-                }
-            })
+                })
     }
 
 
@@ -431,14 +444,14 @@ class RegisterPasswordActivity : AppCompatActivity() {
         val gson = Gson()
         val json = gson.toJson(driverdata[0]!!)
         sessionManager?.create_login_session(
-            json,
-            driverdata[0]!!.userEmail!!,
-            "",
-            true,
-            sessionManager?.isEmailLogin()!!,
-            driverdata[0]!!.userFirstName!!+" "+driverdata[0]!!.userLastName!!,
-            driverdata[0]!!.userProfilePicture!!
-            )
+                json,
+                driverdata[0]!!.userEmail,
+                "",
+                true,
+                sessionManager?.isEmailLogin()!!,
+                driverdata[0]!!.userFirstName + " " + driverdata[0]!!.userLastName,
+                driverdata[0]!!.userProfilePicture
+        )
     }
 
     private fun customTextView(view: AppCompatTextView) {
@@ -451,40 +464,40 @@ class RegisterPasswordActivity : AppCompatActivity() {
         spanTxt.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 val myIntent =
-                    Intent(this@RegisterPasswordActivity, TermsandConditionsActivity::class.java)
+                        Intent(this@RegisterPasswordActivity, TermsandConditionsActivity::class.java)
                 myIntent.putExtra("Type", "Terms")
                 startActivity(myIntent)
             }
         }, spanTxt.length - signup.length, spanTxt.length, 0)
         spanTxt.setSpan(
-            ForegroundColorSpan(resources.getColor(R.color.text_blue_dark)),
-            spanTxt.length - signup.length,
-            spanTxt.length,
-            0
+                ForegroundColorSpan(resources.getColor(R.color.text_blue_dark)),
+                spanTxt.length - signup.length,
+                spanTxt.length,
+                0
         )
 
         spanTxt.append(andContact)
         spanTxt.setSpan(
-            ForegroundColorSpan(resources.getColor(R.color.text_black)),
-            spanTxt.length - andContact.length,
-            spanTxt.length,
-            0
+                ForegroundColorSpan(resources.getColor(R.color.text_black)),
+                spanTxt.length - andContact.length,
+                spanTxt.length,
+                0
         )
 
         spanTxt.append(privacyPolicy)
         spanTxt.setSpan(object : ClickableSpan() {
             override fun onClick(widget: View) {
                 val myIntent =
-                    Intent(this@RegisterPasswordActivity, TermsandConditionsActivity::class.java)
+                        Intent(this@RegisterPasswordActivity, TermsandConditionsActivity::class.java)
                 myIntent.putExtra("Type", "Privacy Policy")
                 startActivity(myIntent)
             }
         }, spanTxt.length - privacyPolicy.length, spanTxt.length, 0)
         spanTxt.setSpan(
-            ForegroundColorSpan(resources.getColor(R.color.text_blue_dark)),
-            spanTxt.length - privacyPolicy.length,
-            spanTxt.length,
-            0
+                ForegroundColorSpan(resources.getColor(R.color.text_blue_dark)),
+                spanTxt.length - privacyPolicy.length,
+                spanTxt.length,
+                0
         )
         view.movementMethod = LinkMovementMethod.getInstance()
         view.setText(spanTxt, TextView.BufferType.SPANNABLE)

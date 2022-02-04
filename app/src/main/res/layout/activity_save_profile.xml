@@ -41,22 +41,26 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center">
 
-
-                            <com.github.florent37.shapeofview.shapes.CircleView
+                            <com.facebook.drawee.view.SimpleDraweeView
+                                android:id="@+id/profile_imv_dp"
                                 android:layout_width="@dimen/_68sdp"
                                 android:layout_height="@dimen/_68sdp"
-                                android:layout_gravity="center">
-
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/profile_imv_dp"
-                                    android:layout_width="@dimen/_68sdp"
-                                    android:layout_height="@dimen/_68sdp"
-                                    android:alpha="0.7"
-                                    android:background="#894FC4"
-                                    android:scaleType="fitXY" />
-
-                            </com.github.florent37.shapeofview.shapes.CircleView>
-
+                                android:layout_centerHorizontal="true"
+                                app:placeholderImageScaleType="fitXY"
+                                app:backgroundImage="@color/user_profile_bg"
+                                android:layout_gravity="center"
+                                app:roundAsCircle="true"
+                                app:roundedCornerRadius="5dp"
+                                app:roundTopLeft="false"
+                                app:roundTopRight="false"
+                                app:roundBottomLeft="false"
+                                app:roundBottomRight="false"
+                                app:roundTopStart="false"
+                                app:roundTopEnd="false"
+                                app:roundBottomStart="false"
+                                app:roundBottomEnd="false"
+                                app:roundingBorderWidth="1dp"
+                                />
 
                         </FrameLayout>
 
@@ -71,8 +75,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_80sdp"
                         android:layout_marginBottom="@dimen/_1sdp"
-                        android:padding="@dimen/_5sdp"
-                        android:scaleType="fitXY"
+                        android:padding="@dimen/_8sdp"
                         android:src="@drawable/camara_profile_icon" />
                 </RelativeLayout>
 
@@ -256,7 +259,7 @@
                             android:layout_marginTop="@dimen/_5sdp"
                             android:orientation="horizontal">
 
-                            <com.google.android.material.textfield.TextInputEditText
+                            <TextView
                                 android:id="@+id/registerdobEditDateOfBrith"
                                 style="@style/singinInputEditviewStyle"
                                 android:layout_width="match_parent"
@@ -266,6 +269,7 @@
                                 android:imeOptions="actionNext"
                                 android:inputType="text"
                                 android:maxLength="14"
+                                android:hint="select"
                                 android:singleLine="true"
                                 tools:text="29/10/1998"
                                 android:textColor="@color/white"/>
@@ -355,18 +359,29 @@
                             android:text="Bio">
 
                         </TextView>
-
-
-                        <TextView
-                            style="@style/singinTextviewStyle"
-                            android:layout_width="wrap_content"
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtInputBio"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/_16sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:textColor="@color/white"
-                            android:text="I am a student who lives in Bangalore city with my family. All my friends are from the city too.">
+                            app:hintEnabled="false">
 
-                        </TextView>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtInputeEditBio"
+                                style="@style/singinInputEditviewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Enter Bio"
+                                android:inputType="textCapWords"
+                                android:maxLength="100"
+                                android:maxLines="2"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="0dp"
+                                tools:text="I am a student who lives in Bangalore city with my family. All my friends are from the city too."
+                                android:textColor="@color/white"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
 
                     </LinearLayout>
 
@@ -376,13 +391,15 @@
                         android:layout_marginLeft="@dimen/_15sdp"
                         android:layout_marginTop="@dimen/_4sdp"
                         android:layout_marginRight="@dimen/_15sdp"
+                        android:visibility="gone"
                         android:background="@color/white" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="visible">
+                        tools:visibility="visible"
+                        android:visibility="gone">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             style="@style/singinTextviewStyle"
@@ -573,6 +590,8 @@
                     android:layout_centerHorizontal="true"
                     android:orientation="horizontal"
                     android:layout_gravity="center"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     app:layout_constraintBottom_toBottomOf="parent"

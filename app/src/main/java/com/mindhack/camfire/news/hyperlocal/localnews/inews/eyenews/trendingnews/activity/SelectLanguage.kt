@@ -329,10 +329,11 @@ class SelectLanguage : AppCompatActivity() {
             val myIntent = Intent(this@SelectLanguage, MainActivity::class.java)
             startActivity(myIntent)
             finish()
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         } else {
-            MyUtils.startActivity(this@SelectLanguage, SignupActivity::class.java, false)
+            MyUtils.startActivity(this@SelectLanguage, SignupActivity::class.java, true)
         }
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+
     }
 
     fun nodatafound() {

@@ -226,28 +226,29 @@
                         android:layout_marginTop="@dimen/_20sdp"
                         android:weightSum="2">
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_width="@dimen/_95sdp"
-                            android:layout_height="@dimen/_130sdp"
-                            android:layout_marginStart="@dimen/_30sdp"
-                            app:cardCornerRadius="@dimen/_10sdp">
 
                             <com.facebook.drawee.view.SimpleDraweeView
                                 android:id="@+id/profile_imv_dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:actualImageResource="@drawable/user_profile_pic_placeholder_white"
-                                app:actualImageScaleType="fitXY"
-                                app:placeholderImage="@drawable/user_profile_pic_placeholder_white"
+                                android:layout_width="@dimen/_95sdp"
+                                android:layout_height="@dimen/_130sdp"
+                                android:layout_marginStart="@dimen/_30sdp"
+                                app:placeholderImage="@drawable/user_profile_pic_placeholder_white_fresco"
                                 app:placeholderImageScaleType="fitXY"
+                                android:adjustViewBounds="true"
+                                app:viewAspectRatio="1.33"
                                 app:roundAsCircle="false"
-                                app:roundBottomEnd="true"
+                                app:roundedCornerRadius="@dimen/_10sdp"
+                                app:roundTopLeft="true"
+                                app:roundTopRight="true"
                                 app:roundBottomLeft="true"
                                 app:roundBottomRight="true"
+                                app:roundTopStart="true"
+                                app:roundTopEnd="true"
                                 app:roundBottomStart="true"
-                                app:roundingBorderColor="@color/colorSurface"
-                                app:roundingBorderWidth="2dp" />
-                        </androidx.cardview.widget.CardView>
+                                app:roundBottomEnd="true"
+                                app:roundingBorderWidth="2dp"
+                                app:roundingBorderColor="@color/white" />
+
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -278,7 +279,7 @@
                                 android:fontFamily="@font/nunito_regular"
                                 android:maxLines="3"
                                 android:padding="@dimen/_3sdp"
-                                android:text="I am a student who lives in Bangalore city with my family. All my friends are from the city too."
+                                tools:text="I am a student who lives in Bangalore city with my family. All my friends are from the city too."
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12ssp" />
 

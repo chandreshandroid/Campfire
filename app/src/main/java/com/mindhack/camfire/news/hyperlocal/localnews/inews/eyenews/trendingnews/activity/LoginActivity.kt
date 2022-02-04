@@ -224,7 +224,7 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, RegisterNameActivity::class.java)
             intent.putExtra(keyIsSocial, false)
             startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
 //            MyUtils.startActivity(this@LoginActivity,RegisterNameActivity::class.java,false,true)
         }
@@ -663,6 +663,7 @@ class LoginActivity : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
+                e.printStackTrace()
                 // Google Sign In failed, update UI appropriately
 //                Log.w(TAG, "Google sign in failed", e.message)
                 // [START_EXCLUDE]
@@ -688,29 +689,57 @@ class LoginActivity : AppCompatActivity() {
         // [START_EXCLUDE silent]
         showProgressDialog()
         // [END_EXCLUDE]
+        signOut()
+        Log.d(TAG, "handleSignInResult:" + acct?.displayName)
+        Log.e("login deatils : ", "GPluse :=  " + acct?.id)
+        Log.e(TAG, "display name: " + acct!!.displayName!!)
+        user_Name = acct.displayName!!
+        user_Email = acct.email!!
+
+// logout
+        signOut()
+        FirebaseInstanceId.getInstance().instanceId
+                .addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
+                    override fun onSuccess(instanceIdResult: InstanceIdResult) {
+                        val instanceId = instanceIdResult.id
+                        var newtoken = instanceIdResult.token
+                        checkForDuplication(user_Email, acct?.id, user_Name, 0, newtoken)
+                    }
+                })
+
+
+    }
+    // [END auth_with_google]
+  /*  // [START auth_with_google]
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
+        userGoogleID = acct.id!!
+        // [START_EXCLUDE silent]
+        showProgressDialog()
+        // [END_EXCLUDE]
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success")
+                        val user = auth.currentUser
 
-                    handleSignInResult(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    MyUtils.showSnackbarkotlin(
-                        this@LoginActivity,
-                        rootLoginMainLayout,
-                        "Authentication Failed."
-                    )
+                        handleSignInResult(user)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.exception)
+                        MyUtils.showSnackbarkotlin(
+                                this@LoginActivity,
+                                rootLoginMainLayout,
+                                "Authentication Failed."
+                        )
+                    }
+                    hideProgressDialog()
                 }
-                hideProgressDialog()
-            }
     }
-    // [END auth_with_google]
+    // [END auth_with_google]*/
 
     private fun handleSignInResult(user: FirebaseUser?) {
         hideProgressDialog()
@@ -818,6 +847,7 @@ class LoginActivity : AppCompatActivity() {
             .observe(this@LoginActivity,
                 object : Observer<List<RegisterPojo?>?> {
                     override fun onChanged(response: List<RegisterPojo?>?) {
+                        hideProgressDialog()
                         if (!response.isNullOrEmpty()) {
 //                            if (registerEmailButtonContinue.isStartAnim) registerEmailButtonContinue?.endAnimation()
 
@@ -866,8 +896,7 @@ class LoginActivity : AppCompatActivity() {
                                 if (MyUtils.userRegisterData != null) {
                                     MyUtils.userRegisterData.userEmail = userEmail
                                     MyUtils.userRegisterData.userFirstName = userName.split(" ")[0]
-                                    MyUtils.userRegisterData.userLastName = userName.split(" ")[1]
-
+                                    MyUtils.userRegisterData.userLastName = if(userName.split(" ").size > 1) userName.split(" ")[1] else ""
                                     when (from) {
                                         0 -> MyUtils.userRegisterData.userGoogleID = fbID
                                         1 -> MyUtils.userRegisterData.userFBID = fbID
@@ -880,8 +909,8 @@ class LoginActivity : AppCompatActivity() {
                                 intent.putExtra(keyIsSocial, true)
                                 startActivity(intent)
                                 overridePendingTransition(
-                                    R.anim.slide_in_left,
-                                    R.anim.slide_out_right
+                                    R.anim.slide_in_right,
+                                    R.anim.slide_out_left
                                 )
 
 

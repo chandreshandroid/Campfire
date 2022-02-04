@@ -11,7 +11,6 @@ import android.location.Geocoder
 import android.location.Location
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Base64
@@ -19,13 +18,14 @@ import android.util.Log
 import android.view.WindowManager
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.BuildConfig
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.R
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.LocationProvider
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.MyUtils
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.SessionManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
-import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.BuildConfig
 import kotlinx.android.synthetic.main.activity_splesh.*
 import java.io.IOException
 import java.security.MessageDigest
@@ -43,8 +43,8 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
 
@@ -59,14 +59,13 @@ class SplashActivity : AppCompatActivity() {
 
         val currentapiVersion = Build.VERSION.SDK_INT
 
-        Log.w("SagaSagar","openNextActivity1");
+        Log.w("SagaSagar", "openNextActivity1")
 
 
         if (currentapiVersion >= Build.VERSION_CODES.M) {
-
             permissionLocation()
         } else {
-            openNextActivity(locationCity)
+            getCurrentLocation()
         }
 
 
@@ -80,13 +79,13 @@ class SplashActivity : AppCompatActivity() {
             val message = getString(R.string.grant_access_location)
 
             MyUtils.showMessageOK(this@SplashActivity, "OK", "Use location service?", message,
-                DialogInterface.OnClickListener { dialog, which ->
-                    dialog.dismiss()
-                    requestPermissions(
-                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                        REQUEST_CODE_Location_PERMISSIONS
-                    )
-                })
+                    DialogInterface.OnClickListener { dialog, which ->
+                        dialog.dismiss()
+                        requestPermissions(
+                                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                                REQUEST_CODE_Location_PERMISSIONS
+                        )
+                    })
 
         } else {
             //openNextActivity()
@@ -107,9 +106,9 @@ class SplashActivity : AppCompatActivity() {
     }
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        @NonNull permissions: Array<String>,
-        @NonNull grantResults: IntArray
+            requestCode: Int,
+            @NonNull permissions: Array<String>,
+            @NonNull grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -122,17 +121,17 @@ class SplashActivity : AppCompatActivity() {
                         val message = "You need to grant access location permission through setting"
 
                         MyUtils.showMessageOK(this@SplashActivity,
-                            "SETTING",
-                            "Use location service?",
-                            message,
-                            DialogInterface.OnClickListener { dialog, which ->
-                                dialog.dismiss()
-                                val i = Intent(
-                                    android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                    Uri.parse("package:" + BuildConfig.APPLICATION_ID)
-                                )
-                                startActivity(i)
-                            })
+                                "SETTING",
+                                "Use location service?",
+                                message,
+                                DialogInterface.OnClickListener { dialog, which ->
+                                    dialog.dismiss()
+                                    val i = Intent(
+                                            android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                            Uri.parse("package:" + BuildConfig.APPLICATION_ID)
+                                    )
+                                    startActivity(i)
+                                })
                         /*  Snackbar.make(
                               rootSplash,
                               R.string.read_location_permissions_senied,
@@ -169,36 +168,36 @@ class SplashActivity : AppCompatActivity() {
     }
 
     fun getCurrentLocation() {
-        Log.w("SagaSagar","getCurrentLocation");
+        Log.w("SagaSagar", "getCurrentLocation")
 
         locationProvider = LocationProvider(
-            this@SplashActivity,
-            LocationProvider.HIGH_ACCURACY,
-            object : LocationProvider.CurrentLocationCallback {
-                override fun handleNewLocation(location: Location) {
+                this@SplashActivity,
+                LocationProvider.HIGH_ACCURACY,
+                object : LocationProvider.CurrentLocationCallback {
+                    override fun handleNewLocation(location: Location) {
 
-                    Log.d("currentLocation", location.toString())
+                        //       Log.d("currentLocation", location.toString())
 
-                    locationProvider?.disconnect()
+                        locationProvider?.disconnect()
 
-                    MyUtils.currentLattitude = location.latitude
-                    MyUtils.currentLongitude = location.longitude
+                        MyUtils.currentLattitude = location.latitude
+                        MyUtils.currentLongitude = location.longitude
 
-                    MyUtils.currentLattitudeFix = location.latitude
-                    MyUtils.currentLongitudeFix = location.longitude
+                        MyUtils.currentLattitudeFix = location.latitude
+                        MyUtils.currentLongitudeFix = location.longitude
 
-                    CurrentCityName(location.latitude, location.longitude)
+                        CurrentCityName(location.latitude, location.longitude)
 
-                    openNextActivity(locationCity)
+                        openNextActivity(locationCity)
 
-                    // if driver is Online location send to server
-                }
+                        // if driver is Online location send to server
+                    }
 
-            })
+                })
 
         locationProvider!!.connect()
 //            start
-        openNextActivity("")
+
 
     }
 
@@ -211,13 +210,13 @@ class SplashActivity : AppCompatActivity() {
 
 
     fun openNextActivity(locationCity: String) {
-        Log.w("SagaSagar","openNextActivity");
+        Log.w("SagaSagar", "openNextActivity")
 
         if (sessionManager!!.isLoggedIn()) {
             if (!sessionManager?.get_Authenticate_User()!!.userMentionID.isNullOrEmpty() && !sessionManager?.get_Authenticate_User()!!.userMentionID.equals(
-                    "@",
-                    false
-                )
+                            "@",
+                            false
+                    )
             ) {
 
                 if (sessionManager?.isLoggedIn()!!) {
@@ -227,12 +226,12 @@ class SplashActivity : AppCompatActivity() {
                             myIntent.putExtra("Push", intent.getSerializableExtra("Push"))
                         startActivity(myIntent)
                         finish()
-                    }, 3000)
+                    }, 1000)
                 } else {
                     Handler().postDelayed({
                         MyUtils.startActivity(this@SplashActivity, SignupActivity::class.java, false)
                         finish()
-                    }, 3000)
+                    }, 1000)
                 }
 
 
@@ -243,53 +242,46 @@ class SplashActivity : AppCompatActivity() {
                     startActivity(myIntent)
                     finishAffinity()
                     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-                }, 3000)
+                }, 1000)
             }
-            Log.w("SagaSagar","openNextActivity1");
+            Log.w("SagaSagar", "openNextActivity1")
 
         } else {
-            /*if (!PrefDb(this@SplashActivity).getString(MyUtils.SharedPreferencesenum.languageId.toString()).isNullOrEmpty()){
-                Handler().postDelayed({
-                    val myIntent = Intent(this@SplashActivity, MainActivity::class.java)
-                    startActivity(myIntent)
-                    finish()
-                }, 3000)*/
+
             if (!sessionManager!!.getsetSelectedLanguage().isNullOrEmpty()) {
-                Log.w("SagaSagar","if");
+                Log.w("SagaSagar", "if")
 
                 if (sessionManager?.isLoggedIn()!!) {
                     Handler().postDelayed({
                         val myIntent = Intent(this@SplashActivity, MainActivity::class.java)
                         startActivity(myIntent)
                         finish()
-                    }, 3000)
+                    }, 1000)
                 } else {
                     Handler().postDelayed({
                         MyUtils.startActivity(this@SplashActivity, SignupActivity::class.java, false)
                         finish()
-                    }, 3000)
+                    }, 1000)
                 }
 
 
             } else {
-                Log.w("SagaSagar","else");
+                Log.w("SagaSagar", "else")
 
                 Handler().postDelayed({
                     val myIntent = Intent(this@SplashActivity, SelectLanguage::class.java)
                     startActivity(myIntent)
                     finish()
-                }, 3000)
+                }, 1000)
             }
 
-            Log.w("SagaSagar","No");
+            Log.w("SagaSagar", "No")
         }
 
     }
 
     fun showSnackBar(message: String) {
-
         Snackbar.make(rootSplash, message, Snackbar.LENGTH_LONG).show()
-
     }
 
     private fun CurrentCityName(lattitude: Double, longitude: Double) {
@@ -298,19 +290,18 @@ class SplashActivity : AppCompatActivity() {
         geocoder = Geocoder(this@SplashActivity, Locale.getDefault())
 
         try {
-
             addresses = geocoder.getFromLocation(
-                lattitude,
-                longitude,
-                1
+                    lattitude,
+                    longitude,
+                    1
             )
 
-            if (addresses != null) {
+            if (!addresses.isNullOrEmpty()) {
 
                 MyUtils.locationCityName =
-                    addresses[0].locality + ", " + addresses[0].adminArea + ", " + addresses[0].countryName
+                        addresses[0].locality + ", " + addresses[0].adminArea + ", " + addresses[0].countryName
                 MyUtils.locationCityNameFix =
-                    addresses[0].locality + "," + addresses[0].adminArea + "," + addresses[0].countryName
+                        addresses[0].locality + "," + addresses[0].adminArea + "," + addresses[0].countryName
             }
 
         } catch (e: IOException) {
@@ -336,8 +327,8 @@ class SplashActivity : AppCompatActivity() {
         // https://farmerprice.in/privacypolicy.html
         try {
             val info = packageManager.getPackageInfo(
-                BuildConfig.APPLICATION_ID,
-                PackageManager.GET_SIGNATURES
+                    BuildConfig.APPLICATION_ID,
+                    PackageManager.GET_SIGNATURES
             )
             for (signature in info.signatures) {
                 val md = MessageDigest.getInstance("SHA")
@@ -355,14 +346,14 @@ class SplashActivity : AppCompatActivity() {
 
 
     fun showMessageOKCancel(
-        context: Context,
-        message: String,
-        title: String = "",
-        okListener: DialogInterface.OnClickListener
+            context: Context,
+            message: String,
+            title: String = "",
+            okListener: DialogInterface.OnClickListener
     ): MaterialAlertDialogBuilder {
         val builder = MaterialAlertDialogBuilder(
-            context,
-            R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog
+                context,
+                R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog
         )
         builder.setMessage(message)
         builder.setTitle(title)
@@ -373,16 +364,16 @@ class SplashActivity : AppCompatActivity() {
             dialog.dismiss()
 
             Snackbar.make(
-                rootSplash,
-                R.string.read_location_permissions_senied,
-                Snackbar.LENGTH_LONG
+                    rootSplash,
+                    R.string.read_location_permissions_senied,
+                    Snackbar.LENGTH_LONG
             ).setAction(
-                "Retry"
+                    "Retry"
             ) {
 
                 val i = Intent(
-                    android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.parse("package:" + BuildConfig.APPLICATION_ID)
+                        android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        Uri.parse("package:" + BuildConfig.APPLICATION_ID)
                 )
                 startActivity(i)
 

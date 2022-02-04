@@ -9,6 +9,7 @@ import android.os.Handler
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
@@ -33,10 +34,15 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.Gson
 import com.google.gson.JsonParseException
+import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.application.MyApplication
+import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.pojo.ResendOTPModelItem
+import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.restapi.RestCallback
 import kotlinx.android.synthetic.main.header_back_with_text.*
 import kotlinx.android.synthetic.main.activity_otp_verification.*
+import kotlinx.android.synthetic.main.activity_register_mobile.*
 import org.json.JSONArray
 import org.json.JSONObject
+import retrofit2.Response
 
 class RegisterOtpVerificationActivity : AppCompatActivity(), View.OnKeyListener {
 
@@ -350,7 +356,6 @@ class RegisterOtpVerificationActivity : AppCompatActivity(), View.OnKeyListener 
                 } else {
                     showSnackbar(
                         resources.getString(R.string.error_common_netdon_t_have_and_accountwork)
-
                     )
                 }
 
@@ -367,7 +372,7 @@ class RegisterOtpVerificationActivity : AppCompatActivity(), View.OnKeyListener 
 //                val newtoken = "abcg3343nsdjhskd2jl"
                         val newtoken = task.result?.token
 //                                    if (MyUtils.isInternetAvailable(this@VerificationOTPActivity)){
-                        resendOTP(newtoken!!)
+                        resendOTP(newtoken!!,objRegister!!.userMobile!!.replace("+91 ", ""))
 //                                    }else{
 //                                        MyUtils.showSnackbarkotlin(this@VerificationOTPActivity, rootVerificationOTPLayout!!, resources.getString(R.string.error_common_network))
 //                                    }
@@ -437,13 +442,13 @@ class RegisterOtpVerificationActivity : AppCompatActivity(), View.OnKeyListener 
 
         MyUtils.showMessageOKCancel(this@RegisterOtpVerificationActivity,
             "Are you sure want to exit ?",
-            "Verification Code",
-            DialogInterface.OnClickListener { dialogInterface, i ->
-                MyUtils.finishActivity(
+            "Verification Code"
+        ) { dialogInterface, i ->
+            MyUtils.finishActivity(
                     this@RegisterOtpVerificationActivity,
                     true
-                )
-            })
+            )
+        }
     }
 
     private fun dynamicLable() {
@@ -812,6 +817,93 @@ class RegisterOtpVerificationActivity : AppCompatActivity(), View.OnKeyListener 
                         }
                     }
                 })
+    }
+
+    fun resendOTP(mobile: String,token: String) {
+
+        val jsonObject = JSONObject()
+        val jsonArray = JSONArray()
+
+
+        var lID=sessionManager?.getsetSelectedLanguage()
+        try {
+            jsonObject.put("userMobile", mobile)
+            jsonObject.put("languageID", lID)
+            jsonObject.put("userDeviceID", token)
+            jsonObject.put("apiType", RestClient.apiType)
+            jsonObject.put("apiVersion", RestClient.apiVersion)
+            jsonArray.put(jsonObject)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } catch (e: JsonParseException) {
+            e.printStackTrace()
+        }
+        var callApi= RestClient.get()!!.otpResendNew(jsonArray.toString())
+        Log.w("Logs","OTP : "+ callApi.request())
+        callApi.enqueue(object : RestCallback<List<ResendOTPModelItem?>?>(MyApplication.mContext) {
+            override fun Success(response: Response<List<ResendOTPModelItem?>?>) {
+
+                if(response.isSuccessful)
+                {
+
+                    if (response!=null ) {
+
+
+                        if (!response.body()!!.isNullOrEmpty() && response.body()!!.get(0)!!.status.equals("true",true)) {
+//
+                            objRegister?.userOTP = response.body()!!.get(0)!!.otp
+
+                            MyUtils.hideKeyboard1(this@RegisterOtpVerificationActivity)
+                            edittext_pin_1.setText("")
+                            edittext_pin_2.setText("")
+                            edittext_pin_3.setText("")
+                            edittext_pin_4.setText("")
+                            edittext_pin_1.requestFocus()
+                            MyUtils.showSnackbarkotlin(
+                                    this@RegisterOtpVerificationActivity,
+                                    ll_mainOtp,
+                                    response.body()!!.get(0)!!.message!!
+                            )
+                        } else {
+                            if (MyUtils.isInternetAvailable(this@RegisterOtpVerificationActivity)) {
+                                MyUtils.showSnackbarkotlin(
+                                        this@RegisterOtpVerificationActivity,
+                                        ll_mainOtp,
+                                        msgSomthingRong
+                                )
+                            } else {
+                                MyUtils.showSnackbarkotlin(
+                                        this@RegisterOtpVerificationActivity,
+                                        ll_mainOtp,
+                                        msgNoInternet
+                                )
+                            }
+                        }
+                    } else {
+                        if (MyUtils.isInternetAvailable(this@RegisterOtpVerificationActivity)) {
+                            MyUtils.showSnackbarkotlin(
+                                    this@RegisterOtpVerificationActivity,
+                                    ll_mainOtp,
+                                    msgSomthingRong
+                            )
+                        } else {
+                            MyUtils.showSnackbarkotlin(
+                                    this@RegisterOtpVerificationActivity,
+                                    ll_mainOtp,
+                                    msgNoInternet
+                            )
+                        }
+                    }
+
+                }
+
+            }
+            override fun failure() {
+                Log.w("SagaSagar","failure")
+
+            }
+        })
     }
 
 

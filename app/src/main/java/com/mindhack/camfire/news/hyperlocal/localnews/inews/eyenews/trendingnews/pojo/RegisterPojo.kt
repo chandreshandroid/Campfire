@@ -199,7 +199,10 @@ import java.io.Serializable
          var badgeIcon: String = ""
          @SerializedName("userSignatureVideo")
          var userSignatureVideo: String = ""
-
+         @SerializedName("userBio")
+         var userBio: String = ""
+         @SerializedName("userDOB")
+         var userDOB: String = ""
 
 
      }

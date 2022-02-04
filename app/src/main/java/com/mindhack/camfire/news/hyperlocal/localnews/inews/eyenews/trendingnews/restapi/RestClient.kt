@@ -2,6 +2,7 @@ package com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnew
 
 
 import com.google.gson.GsonBuilder
+import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.aws.AWSConfiguration
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,10 +24,10 @@ class RestClient {
         // var base = "http://betaapplication.com/camfire/"
         var base_url = base + "v1/"
 
-        val image_base_url = "https://camfire-bkt.s3.ap-south-1.amazonaws.com/"
-        val image_base_url_post = "https://camfire-bkt.s3.ap-south-1.amazonaws.com/"
-        val image_base_url_signutureVideo = "https://camfire-bkt.s3.ap-south-1.amazonaws.com/signaturevideo/"
-        val image_base_url_users = "https://camfire-user.s3.ap-south-1.amazonaws.com/"
+        val image_base_url = "https://camfire.s3.ap-south-1.amazonaws.com/" + AWSConfiguration.mediaPath
+        val image_base_url_post = "https://camfire-bkt.s3.ap-south-1.amazonaws.com/" + AWSConfiguration.mediaPath
+        val image_base_url_signutureVideo = "https://camfire.s3.ap-south-1.amazonaws.com/signaturevideo/"
+        val image_base_url_users = "https://camfire.s3.ap-south-1.amazonaws.com/" + AWSConfiguration.userPath
         val image_base_Level="https://camfire-admin.s3.ap-south-1.amazonaws.com/badges/"
 
         //  var image_base_Level =base+"backend/web/uploads/badgeImages/"

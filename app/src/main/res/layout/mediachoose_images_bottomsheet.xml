@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardElevation="@dimen/_5sdp"
+    app:cardUseCompatPadding="true"
+    android:paddingLeft="@dimen/_10sdp"
+    android:paddingRight="@dimen/_10sdp"
     android:orientation="vertical">
     <!--android:background="@drawable/edit_box_white_border"-->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_10sdp">
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingBottom="@dimen/_5sdp">
         <!--android:background="@drawable/edit_box_white_border"-->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/_10sdp">
+            android:padding="@dimen/_5sdp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_tv"
@@ -39,9 +44,9 @@
             android:layout_gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/_20sdp"
-            android:paddingTop="@dimen/_40sdp"
+            android:paddingTop="@dimen/_20sdp"
             android:paddingRight="@dimen/_20sdp"
-            android:paddingBottom="@dimen/_40sdp">
+            android:paddingBottom="@dimen/_20sdp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/llGalleryLayout"
@@ -134,4 +139,4 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</com.google.android.material.card.MaterialCardView>

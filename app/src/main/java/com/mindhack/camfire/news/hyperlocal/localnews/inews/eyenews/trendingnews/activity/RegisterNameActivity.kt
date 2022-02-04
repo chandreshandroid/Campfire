@@ -1,17 +1,21 @@
 package com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.activity
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.facebook.*
@@ -39,50 +43,14 @@ import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.MyUtils
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.SessionManager
 import kotlinx.android.synthetic.main.activity_ragister_profile.*
-import kotlinx.android.synthetic.main.activity_ragister_profile.registerEmailEditEmail
 import kotlinx.android.synthetic.main.header_back_with_text_space.*
 import org.json.JSONArray
 import org.json.JSONObject
-
-import android.app.DatePickerDialog
-import android.app.DatePickerDialog.OnDateSetListener
-import android.graphics.Color
-import android.view.WindowManager
-import java.text.SimpleDateFormat
 import java.util.*
-import android.graphics.drawable.ColorDrawable
-import android.widget.DatePicker
-import androidx.fragment.app.FragmentActivity
 
 
-class RegisterNameActivity : AppCompatActivity() {
+class RegisterNameActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
-
-//    var sessionManager: SessionManager? = null
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        FacebookSdk.sdkInitialize(getApplicationContext())
-//        sessionManager = SessionManager(this@RegisterNameActivity)
-//        setContentView(R.layout.activity_ragister_profile)
-//
-////            .requestIdToken(getString(R.string.default_web_client_id))
-//
-//        btnNext.setOnClickListener {
-//            MyUtils.hideKeyboard1(this@RegisterNameActivity)
-//            startActivity(Intent(this@RegisterNameActivity, RegisterMobileActivity::class.java))
-//
-//
-//        }
-//    }
-//
-//
-//    override fun onBackPressed() {
-//        // super.onBackPressed()
-//        MyUtils.hideKeyboard1(this@RegisterNameActivity)
-//        MyUtils.userRegisterData = RequestRegisterPojo()
-//        finish()
-//    }
 
     var titleRegister = ""
     var msg_no_email = ""
@@ -114,7 +82,6 @@ class RegisterNameActivity : AppCompatActivity() {
 
     // [START declare_auth]
     private lateinit var auth: FirebaseAuth
-    private var mDateSetListener: OnDateSetListener? = null
 
     // [END declare_auth]
     companion object {
@@ -126,16 +93,15 @@ class RegisterNameActivity : AppCompatActivity() {
     var msgSomthingRong = ""
 
     var sessionManager: SessionManager? = null
-    var bod : String ?="0000-00-00"
+    var bod: String? = "0000-00-00"
+    var datePickerDialog: DatePickerDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        getWindow().setFlags(
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-//        );
-        FacebookSdk.sdkInitialize(getApplicationContext())
+
+        FacebookSdk.sdkInitialize(applicationContext)
         sessionManager = SessionManager(this@RegisterNameActivity)
         callbackManager = CallbackManager.Factory.create()
+        setContentView(R.layout.activity_ragister_profile)
         setContentView(R.layout.activity_ragister_profile)
         dynamicLable()
         objRegister = RequestRegisterPojo()
@@ -155,16 +121,18 @@ class RegisterNameActivity : AppCompatActivity() {
         isSocial = if (intent.getBooleanExtra(keyIsSocial, false))
             intent.getBooleanExtra(keyIsSocial, false) else false
 
-        registerNameEditFirstName.setHint(GetDynamicStringDictionaryObjectClass.firstName)
-        registerNameEditLastName.setHint(GetDynamicStringDictionaryObjectClass.lastName)
+        registerNameEditFirstName.hint = GetDynamicStringDictionaryObjectClass.firstName
+        registerNameEditLastName.hint = GetDynamicStringDictionaryObjectClass.lastName
         registerNameButtonContinue.progressText = "" + GetDynamicStringDictionaryObjectClass.next
         registerEmailEditEmail.isEnabled = !isSocial
-        registerEmailEditEmail?.setHint(""+ GetDynamicStringDictionaryObjectClass.Email_Id)
+        registerEmailEditEmail?.hint = "" + GetDynamicStringDictionaryObjectClass.Email_Id
         msg_no_first_name = resources.getString(R.string.err_empty_name)
         msg_first_name_3_character = resources.getString(R.string.err_first_name_leth)
         msg_no_last_name = resources.getString(R.string.err_last_name)
         msg_last_name_3_character = resources.getString(R.string.err_last_name_leth)
         msg_special_character = resources.getString(R.string.err_special_character)
+
+
 
         registerdobEditDateOfBrith.setOnClickListener {
             val cal = Calendar.getInstance()
@@ -172,26 +140,24 @@ class RegisterNameActivity : AppCompatActivity() {
             val month = cal[Calendar.MONTH]
             val day = cal[Calendar.DAY_OF_MONTH]
 
-            val dialog = DatePickerDialog(
-                this@RegisterNameActivity,
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                mDateSetListener,
-                year, month, day
+            datePickerDialog = DatePickerDialog(
+                    this@RegisterNameActivity, R.style.DatePickerDialogTheme,
+                    this,
+                    year, month, day
             )
-            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.show()
-        }
-        mDateSetListener =
-            OnDateSetListener { datePicker, year, month, day ->
-                var month = month
-                month = month + 1
-
-                val date = "$day-$month-$year"
-                registerdobEditDateOfBrith.setText(date)
-                bod="$year-$month-$day"
-                objRegister?.userDOB = bod
-
+            val maxDate = Calendar.getInstance()
+            maxDate[Calendar.DAY_OF_MONTH] = day
+            maxDate[Calendar.MONTH] = month
+            maxDate[Calendar.YEAR] = year - 10
+            datePickerDialog!!.datePicker.maxDate = maxDate.timeInMillis
+            datePickerDialog!!.setOnShowListener {
+                datePickerDialog!!.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
+                datePickerDialog!!.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
             }
+            datePickerDialog!!.show()
+
+        }
+
 
         tvHeaderText.text = GetDynamicStringDictionaryObjectClass.registration
         setSocialData()
@@ -200,15 +166,15 @@ class RegisterNameActivity : AppCompatActivity() {
         }
         registerEmailEditEmail?.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
-                s: CharSequence, start: Int, before: Int,
-                count: Int
+                    s: CharSequence, start: Int, before: Int,
+                    count: Int
             ) {
                 // TODO Auto-generated method stub
             }
 
             override fun beforeTextChanged(
-                s: CharSequence, start: Int, count: Int,
-                after: Int
+                    s: CharSequence, start: Int, count: Int,
+                    after: Int
             ) {
                 // TODO Auto-generated method stub
             }
@@ -233,13 +199,13 @@ class RegisterNameActivity : AppCompatActivity() {
 
                             } else {
                                 Toast.makeText(
-                                    this@RegisterNameActivity,
-                                    "" + msg_special_character,
-                                    Toast.LENGTH_SHORT
+                                        this@RegisterNameActivity,
+                                        "" + msg_special_character,
+                                        Toast.LENGTH_SHORT
                                 ).show()
                                 val ss = registerEmailEditEmail?.text.toString().substring(
-                                    0,
-                                    registerEmailEditEmail?.text.toString().length - 1
+                                        0,
+                                        registerEmailEditEmail?.text.toString().length - 1
                                 )
                                 registerEmailEditEmail?.setText(ss)
                                 registerEmailEditEmail?.setSelection(registerEmailEditEmail?.text.toString().length)
@@ -250,9 +216,6 @@ class RegisterNameActivity : AppCompatActivity() {
                     }
                 }
 
-                if (validationEmail()) {
-                    checkForDuplicationEmail()
-                }
             }
         })
 
@@ -263,18 +226,18 @@ class RegisterNameActivity : AppCompatActivity() {
 //                if (MyUtils.userRegisterData.userFirstName!!.contains(" ")){
 //                    MyUtils.userRegisterData.userFirstName.replace(" ",  "")
                 registerNameEditFirstName?.setText(
-                    MyUtils.userRegisterData.userFirstName!!
+                        MyUtils.userRegisterData.userFirstName!!
                 )
 //                }else{
 //                    registerNameEditFirstName?.setText(MyUtils.userRegisterData.userFirstName)
 //                }
             }
             if (!MyUtils.userRegisterData.userLastName.isNullOrEmpty()) registerNameEditLastName?.setText(
-                MyUtils.userRegisterData.userLastName
+                    MyUtils.userRegisterData.userLastName
             )
 
             if (!MyUtils.userRegisterData.userEmail.isNullOrEmpty()) registerEmailEditEmail?.setText(
-                MyUtils.userRegisterData.userEmail
+                    MyUtils.userRegisterData.userEmail
 
             )
         }
@@ -282,18 +245,18 @@ class RegisterNameActivity : AppCompatActivity() {
 
         // [END initialize_fblogin]
 
-        registerNameEditFirstName.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+        registerNameEditFirstName.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
         registerNameEditFirstName?.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
-                s: CharSequence, start: Int, before: Int,
-                count: Int
+                    s: CharSequence, start: Int, before: Int,
+                    count: Int
             ) {
                 // TODO Auto-generated method stub
             }
 
             override fun beforeTextChanged(
-                s: CharSequence, start: Int, count: Int,
-                after: Int
+                    s: CharSequence, start: Int, count: Int,
+                    after: Int
             ) {
                 // TODO Auto-generated method stub
             }
@@ -316,13 +279,13 @@ class RegisterNameActivity : AppCompatActivity() {
 
                             } else {
                                 Toast.makeText(
-                                    this@RegisterNameActivity,
-                                    "" + msg_special_character,
-                                    Toast.LENGTH_SHORT
+                                        this@RegisterNameActivity,
+                                        "" + msg_special_character,
+                                        Toast.LENGTH_SHORT
                                 ).show()
                                 val ss = registerNameEditFirstName?.text.toString().substring(
-                                    0,
-                                    registerNameEditFirstName?.text.toString().length - 1
+                                        0,
+                                        registerNameEditFirstName?.text.toString().length - 1
                                 )
                                 registerNameEditFirstName?.setText(ss)
                                 registerNameEditFirstName?.setSelection(registerNameEditFirstName?.text.toString().length)
@@ -335,18 +298,18 @@ class RegisterNameActivity : AppCompatActivity() {
             }
         })
 
-        registerNameEditLastName.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS)
+        registerNameEditLastName.inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
         registerNameEditLastName?.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(
-                s: CharSequence, start: Int, before: Int,
-                count: Int
+                    s: CharSequence, start: Int, before: Int,
+                    count: Int
             ) {
                 // TODO Auto-generated method stub
             }
 
             override fun beforeTextChanged(
-                s: CharSequence, start: Int, count: Int,
-                after: Int
+                    s: CharSequence, start: Int, count: Int,
+                    after: Int
             ) {
                 // TODO Auto-generated method stub
             }
@@ -369,13 +332,13 @@ class RegisterNameActivity : AppCompatActivity() {
 
                             } else {
                                 Toast.makeText(
-                                    this@RegisterNameActivity,
-                                    "" + msg_special_character,
-                                    Toast.LENGTH_SHORT
+                                        this@RegisterNameActivity,
+                                        "" + msg_special_character,
+                                        Toast.LENGTH_SHORT
                                 ).show()
                                 val ss = registerNameEditLastName?.text.toString().substring(
-                                    0,
-                                    registerNameEditLastName?.text.toString().length - 1
+                                        0,
+                                        registerNameEditLastName?.text.toString().length - 1
                                 )
                                 registerNameEditLastName?.setText(ss)
                                 registerNameEditLastName?.setSelection(registerNameEditLastName?.text.toString().length)
@@ -391,10 +354,7 @@ class RegisterNameActivity : AppCompatActivity() {
         registerNameButtonContinue.setOnClickListener {
             MyUtils.hideKeyboard1(this@RegisterNameActivity)
             if (validation()) {
-                if(validEmailOrNot)
-                checkForDuplication()
-
-
+                checkForDuplicationEmail()
             }
         }
     }
@@ -434,15 +394,15 @@ class RegisterNameActivity : AppCompatActivity() {
             objRegister?.userBio = etBiocreate?.text.toString()
 
 
-            if (MyUtils.userRegisterData != null){
+            if (MyUtils.userRegisterData != null) {
                 MyUtils.userRegisterData.userEmail = registerEmailEditEmail?.text.toString()
             }
 
-            Log.w("SagarSagar1",""+objRegister?.userFirstName);
-            Log.w("SagarSagar1",""+objRegister?.userLastName);
-            Log.w("SagarSagar1",""+objRegister?.userEmail);
-            Log.w("SagarSagar1",""+objRegister?.userBio);
-            Log.w("SagarSagar1",""+objRegister?.userDOB);
+            Log.w("SagarSagar1", "" + objRegister?.userFirstName)
+            Log.w("SagarSagar1", "" + objRegister?.userLastName)
+            Log.w("SagarSagar1", "" + objRegister?.userEmail)
+            Log.w("SagarSagar1", "" + objRegister?.userBio)
+            Log.w("SagarSagar1", "" + objRegister?.userDOB)
             val myIntent =
                 Intent(this@RegisterNameActivity, RegisterMobileActivity::class.java)
             myIntent.putExtra(keyRequestObj, objRegister)
@@ -450,35 +410,17 @@ class RegisterNameActivity : AppCompatActivity() {
             startActivity(myIntent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
-//            val myIntent = Intent(this@RegisterNameActivity, RegisterEmailActivity::class.java)
-//            myIntent.putExtra(keyRequestObj, objRegister)
-//            myIntent.putExtra(keyIsSocial, isSocial)
-//            startActivity(myIntent)
-//            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
     }
 
 
-
-    fun checkForDuplicationEmail(){
+    fun checkForDuplicationEmail() {
 
         if (!registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.startAnimation()
 
         val jsonObject = JSONObject()
         val jsonArray = JSONArray()
-
-
-        /*[{
-            "loginuserID": "0",
-            "userEmail": "dhavalgds@gmail.com",
-            "userMobile": "",
-            "languageID": "1",
-            "apiType": "Android",
-            "apiVersion": "1.0"
-        }]*/
-
-        //  val lID = if (PrefDb(this@RegisterEmailActivity).getString(MyUtils.SharedPreferencesenum.languageId.toString()) != null) PrefDb(this@RegisterEmailActivity).getString(MyUtils.SharedPreferencesenum.languageId.toString()) else "1"
-        val lID =sessionManager?.getsetSelectedLanguage()
+        val lID = sessionManager?.getsetSelectedLanguage()
 
         try {
             jsonObject.put("loginuserID", "0")
@@ -499,67 +441,65 @@ class RegisterNameActivity : AppCompatActivity() {
             .get(OtpResendAndCheckDuplicationModel::class.java)
         resendOTP.apiCall(this@RegisterNameActivity, jsonArray.toString(), 1)
             .observe(this@RegisterNameActivity,
-                object : Observer<List<CommonPojo?>?> {
-                    override fun onChanged(response: List<CommonPojo?>?) {
+                    { response ->
                         MyUtils.hideKeyboard1(this@RegisterNameActivity)
 
                         if (!response.isNullOrEmpty()) {
                             if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
-
-                            if (response[0]?.status.equals("true", true)) {
-                                validEmailOrNot=true
-
+                            if (response[0].status.equals("true", true)) {
+                                validEmailOrNot = true
+                                setObject()
                             } else {
-                                validEmailOrNot=false
-
+                                validEmailOrNot = false
+                                if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
                                 //No data and no internet
                                 if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
-                                    if (!response[0]?.message.isNullOrEmpty()) {
+                                    if (!response[0].message.isNullOrEmpty()) {
                                         MyUtils.showSnackbarkotlin(
-                                            this@RegisterNameActivity,
-                                            registerNameLayoutMain,
-                                            response[0]?.message!!
+                                                this@RegisterNameActivity,
+                                                registerNameLayoutMain,
+                                                response[0].message!!
                                         )
                                     } else {
                                         MyUtils.showSnackbarkotlin(
-                                            this@RegisterNameActivity,
-                                            registerNameLayoutMain,
-                                            msgAlreadyExist
+                                                this@RegisterNameActivity,
+                                                registerNameLayoutMain,
+                                                msgAlreadyExist
                                         )
                                     }
                                 } else {
                                     MyUtils.showSnackbarkotlin(
-                                        this@RegisterNameActivity,
-                                        registerNameLayoutMain,
-                                        msgNoInternet
+                                            this@RegisterNameActivity,
+                                            registerNameLayoutMain,
+                                            msgNoInternet
                                     )
                                 }
                             }
                         } else {
-                            validEmailOrNot=false
+                            validEmailOrNot = false
                             if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
 
                             //No internet and somting went rong
                             if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
                                 MyUtils.showSnackbarkotlin(
-                                    this@RegisterNameActivity,
-                                    registerNameLayoutMain,
-                                    msgSomthingRong
+                                        this@RegisterNameActivity,
+                                        registerNameLayoutMain,
+                                        msgSomthingRong
                                 )
                             } else {
                                 MyUtils.showSnackbarkotlin(
-                                    this@RegisterNameActivity,
-                                    registerNameLayoutMain,
-                                    msgNoInternet)
+                                        this@RegisterNameActivity,
+                                        registerNameLayoutMain,
+                                        msgNoInternet
+                                )
                             }
                         }
-                    }
-                })
+                    })
 
     }
 
 
-    fun checkForDuplication(){
+    fun checkForDuplication() {
 
         if (!registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.startAnimation()
 
@@ -577,7 +517,7 @@ class RegisterNameActivity : AppCompatActivity() {
         }]*/
 
         //  val lID = if (PrefDb(this@RegisterNameActivity).getString(MyUtils.SharedPreferencesenum.languageId.toString()) != null) PrefDb(this@RegisterNameActivity).getString(MyUtils.SharedPreferencesenum.languageId.toString()) else "1"
-        val lID =sessionManager?.getsetSelectedLanguage()
+        val lID = sessionManager?.getsetSelectedLanguage()
 
         try {
             jsonObject.put("loginuserID", "0")
@@ -599,57 +539,58 @@ class RegisterNameActivity : AppCompatActivity() {
             .get(OtpResendAndCheckDuplicationModel::class.java)
         resendOTP.apiCall(this@RegisterNameActivity, jsonArray.toString(), 1)
             .observe(this@RegisterNameActivity,
-                object : Observer<List<CommonPojo?>?> {
-                    override fun onChanged(response: List<CommonPojo?>?) {
-                        if (!response.isNullOrEmpty()) {
-                            if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
+                    object : Observer<List<CommonPojo?>?> {
+                        override fun onChanged(response: List<CommonPojo?>?) {
+                            if (!response.isNullOrEmpty()) {
+                                if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
 
-                            Log.w("SagarSagar",""+response[0]?.status)
-                            if (response[0]?.status.equals("true", true)) {
-                                setObject()
-                            } else {
-                                //No data and no internet
-                                if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
-                                    if (!response[0]?.message.isNullOrEmpty()) {
-                                        MyUtils.showSnackbarkotlin(
-                                            this@RegisterNameActivity,
-                                            registerNameLayoutMain,
-                                            response[0]?.message!!
-                                        )
+                                Log.w("SagarSagar", "" + response[0]?.status)
+                                if (response[0]?.status.equals("true", true)) {
+                                    setObject()
+                                } else {
+                                    //No data and no internet
+                                    if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
+                                        if (!response[0]?.message.isNullOrEmpty()) {
+                                            MyUtils.showSnackbarkotlin(
+                                                    this@RegisterNameActivity,
+                                                    registerNameLayoutMain,
+                                                    response[0]?.message!!
+                                            )
+                                        } else {
+                                            MyUtils.showSnackbarkotlin(
+                                                    this@RegisterNameActivity,
+                                                    registerNameLayoutMain,
+                                                    msgAlreadyExist
+                                            )
+                                        }
                                     } else {
                                         MyUtils.showSnackbarkotlin(
-                                            this@RegisterNameActivity,
-                                            registerNameLayoutMain,
-                                            msgAlreadyExist
+                                                this@RegisterNameActivity,
+                                                registerNameLayoutMain,
+                                                msgNoInternet
                                         )
                                     }
+                                }
+                            } else {
+                                if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
+
+                                //No internet and somting went rong
+                                if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterNameActivity,
+                                            registerNameLayoutMain,
+                                            msgSomthingRong
+                                    )
                                 } else {
                                     MyUtils.showSnackbarkotlin(
-                                        this@RegisterNameActivity,
-                                        registerNameLayoutMain,
-                                        msgNoInternet
+                                            this@RegisterNameActivity,
+                                            registerNameLayoutMain,
+                                            msgNoInternet
                                     )
                                 }
                             }
-                        } else {
-                            if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
-
-                            //No internet and somting went rong
-                            if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
-                                MyUtils.showSnackbarkotlin(
-                                    this@RegisterNameActivity,
-                                    registerNameLayoutMain,
-                                    msgSomthingRong
-                                )
-                            } else {
-                                MyUtils.showSnackbarkotlin(
-                                    this@RegisterNameActivity,
-                                    registerNameLayoutMain,
-                                    msgNoInternet)
-                            }
                         }
-                    }
-                })
+                    })
 
     }
 
@@ -669,75 +610,83 @@ class RegisterNameActivity : AppCompatActivity() {
         msgNoInternet = resources.getString(R.string.error_common_netdon_t_have_and_accountwork)
 
         title_bySigninup =
-            GetDynamicStringDictionaryObjectClass?.By_signing_up_you_agree_with_the + " "
-        title_terms = GetDynamicStringDictionaryObjectClass?.Terms_Conditions
-        title_privacyPolicy = GetDynamicStringDictionaryObjectClass?.Privacy_Prolicy
-        title_andConact = " " + GetDynamicStringDictionaryObjectClass?.and + " "
+            GetDynamicStringDictionaryObjectClass.By_signing_up_you_agree_with_the + " "
+        title_terms = GetDynamicStringDictionaryObjectClass.Terms_Conditions
+        title_privacyPolicy = GetDynamicStringDictionaryObjectClass.Privacy_Prolicy
+        title_andConact = " " + GetDynamicStringDictionaryObjectClass.and + " "
 
     }
 
 
     fun validationEmail(): Boolean {
         var checkFlag = true
-        if (registerEmailEditEmail.text.toString().isNullOrEmpty() || registerEmailEditEmail.text.toString().isNullOrBlank()) {
+        if (registerEmailEditEmail.text.toString()
+                .isNullOrEmpty() || registerEmailEditEmail.text.toString().isNullOrBlank()
+        ) {
             checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterNameActivity,
-                registerNameLayoutMain,
-                msg_no_email
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_no_email
             )
         } else if (!MyUtils.isEmailValid(registerEmailEditEmail.text.toString())) {
             checkFlag = false
-            MyUtils.showSnackbarkotlin(this@RegisterNameActivity,registerNameLayoutMain,msg_valid_email)
+            MyUtils.showSnackbarkotlin(
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_valid_email
+            )
         }
         return checkFlag
     }
 
 
     fun validation(): Boolean {
-        var checkFlag = true
+        var checkFlag = false
         if (registerNameEditFirstName.text.toString()
                 .isNullOrEmpty() || registerNameEditFirstName.text.toString().isNullOrBlank()
         ) {
-            checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterNameActivity,
-                registerNameLayoutMain,
-                msg_no_first_name
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_no_first_name
             )
         } else if (registerNameEditFirstName.text.toString().length < 3) {
-            checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterNameActivity,
-                registerNameLayoutMain,
-                msg_first_name_3_character
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_first_name_3_character
             )
         } else if (registerNameEditLastName.text.toString()
                 .isNullOrEmpty() || registerNameEditLastName.text.toString().isNullOrBlank()
         ) {
-            checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterNameActivity,
-                registerNameLayoutMain,
-                msg_no_last_name
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_no_last_name
             )
         } else if (registerNameEditLastName.text.toString().length < 3) {
-            checkFlag = false
             MyUtils.showSnackbarkotlin(
-                this@RegisterNameActivity,
-                registerNameLayoutMain,
-                msg_last_name_3_character
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_last_name_3_character
             )
-        }  else  if (registerEmailEditEmail.text.toString().isNullOrEmpty() || registerEmailEditEmail.text.toString().isNullOrBlank()) {
-            checkFlag = false
+        } else if (registerEmailEditEmail.text.toString()
+                .isNullOrEmpty() || registerEmailEditEmail.text.toString().isNullOrBlank()
+        ) {
             MyUtils.showSnackbarkotlin(
-                this@RegisterNameActivity,
-                registerNameLayoutMain,
-                msg_no_email
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_no_email
             )
         } else if (!MyUtils.isEmailValid(registerEmailEditEmail.text.toString())) {
-            checkFlag = false
-            MyUtils.showSnackbarkotlin(this@RegisterNameActivity,registerNameLayoutMain,msg_valid_email)
+            MyUtils.showSnackbarkotlin(
+                    this@RegisterNameActivity,
+                    registerNameLayoutMain,
+                    msg_valid_email
+            )
+        } else {
+            checkFlag = true
         }
         return checkFlag
     }
@@ -765,7 +714,7 @@ class RegisterNameActivity : AppCompatActivity() {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account!!)
+                firebaseAuthWithGoogle(account)
 
                 isSocial = true
                 setSocialData()
@@ -777,9 +726,9 @@ class RegisterNameActivity : AppCompatActivity() {
                 Log.w(RegisterNameActivity.TAG, "Google sign in failed", e)
                 // [START_EXCLUDE]
                 MyUtils.showSnackbarkotlin(
-                    this@RegisterNameActivity,
-                    registerNameLayoutMain!!,
-                    "Authentication Failed."
+                        this@RegisterNameActivity,
+                        registerNameLayoutMain!!,
+                        "Authentication Failed."
                 )
 //                updateUI(null)
                 // [END_EXCLUDE]
@@ -791,7 +740,7 @@ class RegisterNameActivity : AppCompatActivity() {
     }
     // [END onactivityresult]
 
-    // [START auth_with_google]
+ /*   // [START auth_with_google]
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(RegisterNameActivity.TAG, "firebaseAuthWithGoogle:" + acct.id!!)
         userGoogleID = acct.id!!
@@ -812,9 +761,9 @@ class RegisterNameActivity : AppCompatActivity() {
                     // If sign in fails, display a message to the user.
                     Log.w(RegisterNameActivity.TAG, "signInWithCredential:failure", task.exception)
                     MyUtils.showSnackbarkotlin(
-                        this@RegisterNameActivity,
-                        registerNameLayoutMain,
-                        "Authentication Failed."
+                            this@RegisterNameActivity,
+                            registerNameLayoutMain,
+                            "Authentication Failed."
                     )
 //                    Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
 //                    handleSignInResult(null)
@@ -825,8 +774,34 @@ class RegisterNameActivity : AppCompatActivity() {
                 // [END_EXCLUDE]
             }
     }
-    // [END auth_with_google]
+    // [END auth_with_google]*/
 
+    // [START auth_with_google]
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        Log.d(RegisterNameActivity.TAG, "firebaseAuthWithGoogle:" + acct.id!!)
+        userGoogleID = acct.id!!
+        // [START_EXCLUDE silent]
+        showProgressDialog()
+        // [END_EXCLUDE]
+        user_Name = acct.displayName!!
+        user_Email = acct.email!!
+        // logout
+        signOut()
+//        full_Name_edit_text?.setText(user_Name)
+        Log.e("System out", "Print displayName := " + user_Name)
+//        email_edit_text?.setText(user_Email)
+
+        FirebaseInstanceId.getInstance().instanceId
+                .addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
+                    override fun onSuccess(instanceIdResult: InstanceIdResult) {
+                        val instanceId = instanceIdResult.id
+                        var newtoken = instanceIdResult.token
+                        checkForDuplication(user_Email, acct.id, user_Name, 0, newtoken)
+                    }
+                })
+
+    }
+    // [END auth_with_google]
     private fun handleSignInResult(user: FirebaseUser?) {
         hideProgressDialog()
         Log.d(RegisterNameActivity.TAG, "handleSignInResult:" + user?.displayName)
@@ -849,9 +824,9 @@ class RegisterNameActivity : AppCompatActivity() {
 //        email_edit_text?.setText(user_Email)
 
         MyUtils.showSnackbarkotlin(
-            this@RegisterNameActivity,
-            registerNameLayoutMain!!,
-            "" + user_Name
+                this@RegisterNameActivity,
+                registerNameLayoutMain!!,
+                "" + user_Name
         )
 
         FirebaseInstanceId.getInstance().instanceId
@@ -859,7 +834,7 @@ class RegisterNameActivity : AppCompatActivity() {
                 override fun onSuccess(instanceIdResult: InstanceIdResult) {
                     val instanceId = instanceIdResult.id
                     var newtoken = instanceIdResult.token
-                    checkForDuplication(user_Email, user?.uid, user_Name, 0, newtoken)
+                    checkForDuplication(user_Email, user.uid, user_Name, 0, newtoken)
                 }
             })
     }
@@ -881,23 +856,29 @@ class RegisterNameActivity : AppCompatActivity() {
     }
 
     fun showProgressDialog() {
-        progressDialog.setMessage(getString(R.string.loading))
-        progressDialog.isIndeterminate = true
-        progressDialog.show()
+        try {
+            progressDialog.setMessage(getString(R.string.loading))
+            progressDialog.isIndeterminate = true
+            progressDialog.show()
+        } catch (e: Exception) {
+        }
     }
 
     fun hideProgressDialog() {
-        if (progressDialog.isShowing) {
-            progressDialog.dismiss()
+        try {
+            if (progressDialog.isShowing) {
+                progressDialog.dismiss()
+            }
+        } catch (e: Exception) {
         }
     }
 
     fun checkForDuplication(
-        userEmail: String,
-        fbID: String,
-        userName: String,
-        from: Int,
-        token: String
+            userEmail: String,
+            fbID: String,
+            userName: String,
+            from: Int,
+            token: String
     ) {
 
         /**
@@ -973,90 +954,114 @@ class RegisterNameActivity : AppCompatActivity() {
             .get(OnBoardingModel::class.java)
         resendOTP.apiCall(this@RegisterNameActivity, jsonArray.toString(), 10)
             .observe(this@RegisterNameActivity,
-                object : Observer<List<RegisterPojo?>?> {
-                    override fun onChanged(response: List<RegisterPojo?>?) {
-                        if (!response.isNullOrEmpty()) {
+                    object : Observer<List<RegisterPojo?>?> {
+                        override fun onChanged(response: List<RegisterPojo?>?) {
+                            hideProgressDialog()
+                            if (!response.isNullOrEmpty()) {
 //                            if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
 
-                            if (response[0]?.status.equals("true", true)) {
-                                //User not found
+                                if (response[0]?.status.equals("true", true)) {
+                                    //User not found
 
-                                sessionManager?.clear_login_session()
-                                storeSessionManager(response[0]?.data!!)
-                                MyUtils.userRegisterData = RequestRegisterPojo()
-                                Handler().postDelayed({
-                                    val myIntent = Intent(
-                                        this@RegisterNameActivity,
-                                        RegisterNameActivity::class.java
-                                    )
-                                    startActivity(myIntent)
-                                    overridePendingTransition(
-                                        R.anim.slide_in_right,
-                                        R.anim.slide_out_left
-                                    )
-                                    finishAffinity()
+                                    sessionManager?.clear_login_session()
+                                    storeSessionManager(response[0]?.data!!)
+                                    MyUtils.userRegisterData = RequestRegisterPojo()
+                                    Handler().postDelayed({
+                                        val myIntent = Intent(
+                                                this@RegisterNameActivity,
+                                                MainActivity::class.java
+                                        )
+                                        startActivity(myIntent)
+                                        overridePendingTransition(
+                                                R.anim.slide_in_right,
+                                                R.anim.slide_out_left
+                                        )
+                                        finishAffinity()
 
-                                }, 500)
+                                    }, 500)
 
 //                                val intent = Intent(this@RegisterNameActivity, RegisterNameActivity::class.java)
 //                                intent.putExtra(keyIsSocial, true)
 //                                startActivity(intent)
 //                                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
-                            } else {
-                                //No data and no internet
-                                isSocial = true
+                                } else {
+                                    //No data and no internet
+                                    isSocial = true
 
-                                if (MyUtils.userRegisterData != null) {
-                                    MyUtils.userRegisterData.userEmail = userEmail
-                                    MyUtils.userRegisterData.userFirstName = userName
+                                    if (MyUtils.userRegisterData != null) {
+                                        MyUtils.userRegisterData.userEmail = userEmail
+                                        MyUtils.userRegisterData.userFirstName = userName.split(" ")[0]
+                                        MyUtils.userRegisterData.userLastName = if(userName.split(" ").size > 1) userName.split(" ")[1] else ""
 
-                                    when (from) {
-                                        0 -> MyUtils.userRegisterData.userGoogleID = fbID
-                                        1 -> MyUtils.userRegisterData.userFBID = fbID
-                                        2 -> MyUtils.userRegisterData.userTwiterID = fbID
-                                    }
+                                        when (from) {
+                                            0 -> MyUtils.userRegisterData.userGoogleID = fbID
+                                            1 -> MyUtils.userRegisterData.userFBID = fbID
+                                            2 -> MyUtils.userRegisterData.userTwiterID = fbID
+                                        }
 
 //                                    if (userName.contains(" ")){
-                                    var userName1 = userName.split(" ")
+                                        var userName1 = userName.split(" ")
 //                                    }
-                                    registerNameEditFirstName?.setText(userName1[0])
-                                    registerNameEditLastName?.setText(userName1[1])
-                                    registerEmailEditEmail?.setText(userEmail)
+                                        registerNameEditFirstName?.setText(MyUtils.userRegisterData.userFirstName)
+                                        registerNameEditLastName?.setText(MyUtils.userRegisterData.userLastName)
+                                        registerEmailEditEmail?.setText(userEmail)
+                                    }
                                 }
-                            }
-                        } else {
+                            } else {
 //                            if (registerNameButtonContinue.isStartAnim) registerNameButtonContinue?.endAnimation()
 
-                            //No internet and somting went rong
-                            if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
-                                MyUtils.showSnackbarkotlin(
-                                    this@RegisterNameActivity,
-                                    registerNameLayoutMain,
-                                    msgSomthingRong
-                                )
-                            } else {
-                                MyUtils.showSnackbarkotlin(
-                                    this@RegisterNameActivity,
-                                    registerNameLayoutMain,
-                                    msgNoInternet
-                                )
+                                //No internet and somting went rong
+                                if (MyUtils.isInternetAvailable(this@RegisterNameActivity)) {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterNameActivity,
+                                            registerNameLayoutMain,
+                                            msgSomthingRong
+                                    )
+                                } else {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterNameActivity,
+                                            registerNameLayoutMain,
+                                            msgNoInternet
+                                    )
+                                }
                             }
                         }
-                    }
-                })
+                    })
     }
 
     private fun storeSessionManager(driverdata: List<RegisterPojo.Data?>) {
         val gson = Gson()
         val json = gson.toJson(driverdata[0]!!)
         sessionManager?.create_login_session(
-            json,
-            driverdata[0]!!.userEmail!!,
-            "",
-            true,
-            sessionManager?.isEmailLogin()!!,
-            driverdata[0]!!.userFirstName!!+" "+driverdata[0]!!.userLastName!!,
-            driverdata[0]!!.userProfilePicture!!)
+                json,
+                driverdata[0]!!.userEmail,
+                "",
+                true,
+                sessionManager?.isEmailLogin()!!,
+                driverdata[0]!!.userFirstName + " " + driverdata[0]!!.userLastName,
+                driverdata[0]!!.userProfilePicture
+        )
+    }
+
+    override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
+        val m = month+1
+        var strNewDay = ""+day
+        var strNewMonth = ""+m
+        strNewDay = if (day < 10) {
+            "0$day"
+        } else {
+            day.toString()
+        }
+        strNewMonth = if (month + 1 < 10) {
+            "0$m"
+        } else {
+            m.toString()
+        }
+        val date = "$strNewDay-$strNewMonth-$year"
+        registerdobEditDateOfBrith.text = date
+        bod = "$year-$strNewMonth-$strNewDay"
+        objRegister?.userDOB = bod
+        datePickerDialog!!.dismiss()
     }
 
 

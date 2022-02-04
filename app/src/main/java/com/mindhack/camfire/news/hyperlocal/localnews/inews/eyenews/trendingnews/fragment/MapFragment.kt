@@ -308,9 +308,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             map_frame.visibility = View.GONE
 
         } else {
-            msgButton.visibility = View.VISIBLE
-            msgButton.text = "Getting Post...."
-            map_frame.visibility = View.VISIBLE
+            msgButton?.visibility = View.VISIBLE
+            msgButton?.text = "Getting Post...."
+            map_frame?.visibility = View.VISIBLE
         }
 
 

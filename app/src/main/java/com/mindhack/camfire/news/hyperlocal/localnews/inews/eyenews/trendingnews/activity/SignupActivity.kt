@@ -75,7 +75,7 @@ class SignupActivity : AppCompatActivity() {
 
         FacebookSdk.sdkInitialize(getApplicationContext())
         callbackManager = CallbackManager.Factory.create()
-
+        MyUtils.userRegisterData = RequestRegisterPojo()
         setContentView(R.layout.singup_activity)
         init()
 
@@ -119,7 +119,7 @@ class SignupActivity : AppCompatActivity() {
                             Log.e("System out", "Print Fblogin Name :=  " + user_Email)
                             MyUtils.showSnackbarkotlin(
                                 this@SignupActivity,
-                                rootLoginMainLayout!!,
+                                registerNameLayoutMain!!,
                                 "" + user_Name
                             )
                             if (!fbID.isNullOrEmpty() && !user_Email.isNullOrEmpty()) {
@@ -200,13 +200,13 @@ class SignupActivity : AppCompatActivity() {
 
 
 
-        imgLoginSocialFacebook?.setOnClickListener {
-            MyUtils.hideKeyboardFrom(this@SignupActivity, imgLoginSocialFacebook)
+        registerNameButtonFacebook?.setOnClickListener {
+            MyUtils.hideKeyboardFrom(this@SignupActivity, registerNameButtonFacebook)
 
             buttonFacebookLogin?.performClick()
         }
-        imgLoginSocialGooglePlus?.setOnClickListener {
-            MyUtils.hideKeyboardFrom(this@SignupActivity, imgLoginSocialGooglePlus)
+        registerNameButtonGoogle?.setOnClickListener {
+            MyUtils.hideKeyboardFrom(this@SignupActivity, registerNameButtonGoogle)
             signIn()
         }
 
@@ -294,6 +294,7 @@ class SignupActivity : AppCompatActivity() {
             .observe(this@SignupActivity,
                 object : Observer<List<RegisterPojo?>?> {
                     override fun onChanged(response: List<RegisterPojo?>?) {
+                        hideProgressDialog()
                         if (!response.isNullOrEmpty()) {
 //                            if (registerEmailButtonContinue.isStartAnim) registerEmailButtonContinue?.endAnimation()
 
@@ -316,32 +317,13 @@ class SignupActivity : AppCompatActivity() {
                                     finishAffinity()
                                 }, 500)
 
-
-                                /*if (MyUtils.isInternetAvailable(this@SignupActivity)) {
-                                    val myIntent = Intent(
-                                        this@SignupActivity,
-                                        MainActivity::class.java
-                                    )
-                                    startActivity(myIntent)
-                                    overridePendingTransition(
-                                        R.anim.slide_in_right,
-                                        R.anim.slide_out_left
-                                    )
-                                } else {
-                                    MyUtils.showSnackbarkotlin(
-                                        this@SignupActivity,
-                                        rootLoginMainLayout,
-                                        msgNoInternet
-                                    )
-                                }*/
-
                             } else {
                                 //No data and no internet
-
-
                                 if (MyUtils.userRegisterData != null) {
                                     MyUtils.userRegisterData.userEmail = userEmail
-                                    MyUtils.userRegisterData.userFirstName = userName
+                                    MyUtils.userRegisterData.userFirstName = userName.split(" ")[0]
+                                    MyUtils.userRegisterData.userLastName = if(userName.split(" ").size > 1) userName.split(" ")[1] else ""
+
 
                                     when (from) {
                                         0 -> MyUtils.userRegisterData.userGoogleID = fbID
@@ -368,13 +350,13 @@ class SignupActivity : AppCompatActivity() {
                             if (MyUtils.isInternetAvailable(this@SignupActivity)) {
                                 MyUtils.showSnackbarkotlin(
                                     this@SignupActivity,
-                                    rootLoginMainLayout,
+                                    registerNameLayoutMain,
                                     msgSomthingRong
                                 )
                             } else {
                                 MyUtils.showSnackbarkotlin(
                                     this@SignupActivity,
-                                    rootLoginMainLayout,
+                                    registerNameLayoutMain,
                                     msgNoInternet
                                 )
                             }
@@ -418,11 +400,12 @@ class SignupActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e)
+                Log.e(TAG, "Google sign in failed"+ e.printStackTrace())
                 // [START_EXCLUDE]
+                Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
                 MyUtils.showSnackbarkotlin(
                     this@SignupActivity,
-                    rootLoginMainLayout!!,
+                    registerNameLayoutMain!!,
                     "Authentication Failed."
                 )
 //                updateUI(null)
@@ -433,9 +416,30 @@ class SignupActivity : AppCompatActivity() {
             callbackManager.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
+        userGoogleID = acct.id!!
+        // [START_EXCLUDE silent]
+        showProgressDialog()
+        // [END_EXCLUDE]
+
+        user_Name = acct.displayName!!
+        user_Email = acct.email!!
+        signOut()
+        FirebaseInstanceId.getInstance().instanceId
+                .addOnSuccessListener(object : OnSuccessListener<InstanceIdResult> {
+                    override fun onSuccess(instanceIdResult: InstanceIdResult) {
+                        val instanceId = instanceIdResult.id
+                        var newtoken = instanceIdResult.token
+                        checkForDuplication(user_Email, userGoogleID, user_Name, 0, newtoken)
+                    }
+                })
+
+    }
     // [END onactivityresult]
 
-    // [START auth_with_google]
+/*    // [START auth_with_google]
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
         userGoogleID = acct.id!!
@@ -457,14 +461,14 @@ class SignupActivity : AppCompatActivity() {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     MyUtils.showSnackbarkotlin(
                         this@SignupActivity,
-                        rootLoginMainLayout,
+                        registerNameLayoutMain,
                         "Authentication Failed."
                     )
                 }
                 hideProgressDialog()
             }
     }
-    // [END auth_with_google]
+    // [END auth_with_google]*/
 
     private fun handleSignInResult(user: FirebaseUser?) {
         hideProgressDialog()

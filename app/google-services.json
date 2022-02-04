@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "218460881708",
-    "project_id": "campfire-316410",
-    "storage_bucket": "campfire-316410.appspot.com"
+    "project_number": "1087587776476",
+    "project_id": "camfire-1643212324473",
+    "storage_bucket": "camfire-1643212324473.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:218460881708:android:6a48e48d2a43a036aae289",
+        "mobilesdk_app_id": "1:1087587776476:android:e23ae50c8b95ca29888119",
         "android_client_info": {
           "package_name": "com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews"
         }
       },
       "oauth_client": [
         {
-          "client_id": "218460881708-8gr5f7ni6djmts879t43fkjnu24bbi5l.apps.googleusercontent.com",
+          "client_id": "1087587776476-40ehp6u0b7daiei6n19ud66lllduba52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews",
+            "certificate_hash": "c4aeea20bac517eb1135c355422cbf4a99106ed1"
+          }
+        },
+        {
+          "client_id": "1087587776476-4b2e38q744dei2ll8nabifs3fgruvenm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCNE4ayN-cbhQRUucA_pPgAEsnE8g7jqW8"
+          "current_key": "AIzaSyDakLvyJaSB-wqSVKen5OsvItQyUTrjj7I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "218460881708-8gr5f7ni6djmts879t43fkjnu24bbi5l.apps.googleusercontent.com",
+              "client_id": "1087587776476-4b2e38q744dei2ll8nabifs3fgruvenm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

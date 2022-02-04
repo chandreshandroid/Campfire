@@ -262,6 +262,7 @@ object MyUtils {
     @SuppressLint("SimpleDateFormat")
     @Throws(ParseException::class)
     fun formatDate(date: String, initDateFormat: String, endDateFormat: String): String {
+        if(date.isNullOrEmpty()) return ""
         val initDate = SimpleDateFormat(initDateFormat).parse(date)
         val formatter = SimpleDateFormat(endDateFormat)
         return formatter.format(initDate)

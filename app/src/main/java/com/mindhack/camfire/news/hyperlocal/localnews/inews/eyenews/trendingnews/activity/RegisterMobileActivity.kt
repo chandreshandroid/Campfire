@@ -17,16 +17,19 @@ import org.json.JSONObject
 import android.text.Selection
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
+import androidx.lifecycle.ViewModelProviders
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.GetDynamicStringDictionaryObjectClass
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.SessionManager
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.gson.JsonParseException
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.application.MyApplication.Companion.mContext
+import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.model.OtpResendAndCheckDuplicationModel
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.pojo.*
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.restapi.RestCallback
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_ragister_profile.*
 import kotlinx.android.synthetic.main.activity_register_email.*
+import kotlinx.android.synthetic.main.activity_register_email.registerEmailEditEmail
 import retrofit2.Response
 
 
@@ -91,7 +94,7 @@ class RegisterMobileActivity : AppCompatActivity() {
                         var newtoken = instanceIdResult.token
                         Log.e("System out", "new token:= " + instanceIdResult.token)
                         if (MyUtils.isInternetAvailable(this@RegisterMobileActivity)) {
-                            checkForDuplication(objRegister?.userMobile!!,newtoken)
+                            checkForDuplicationMobile(objRegister?.userMobile!!,newtoken)
 
                         } else {
                             MyUtils.showSnackbarkotlin(
@@ -234,7 +237,7 @@ class RegisterMobileActivity : AppCompatActivity() {
             )
     }
 
-    fun checkForDuplication(mobile: String,token: String) {
+    fun sendOtp(mobile: String, token: String) {
         if (!registerMobileButtonContinue?.isStartAnim!!)
             registerMobileButtonContinue.startAnimation()
 
@@ -242,16 +245,6 @@ class RegisterMobileActivity : AppCompatActivity() {
         val jsonArray = JSONArray()
 
 
-        /*[{
-            "loginuserID": "0",
-            "userEmail": "dhavalgds@gmail.com",
-            "userMobile": "",
-            "languageID": "1",
-            "apiType": "Android",
-            "apiVersion": "1.0"
-        }]*/
-
-       // val lID = if (PrefDb(this@RegisterMobileActivity).getString(MyUtils.SharedPreferencesenum.languageId.toString()) != null) PrefDb( this@RegisterMobileActivity ).getString(MyUtils.SharedPreferencesenum.languageId.toString()) else "1"
         var lID=sessionManager?.getsetSelectedLanguage()
         try {
             jsonObject.put("userMobile", mobile)
@@ -349,5 +342,87 @@ class RegisterMobileActivity : AppCompatActivity() {
 
             }
         })
+    }
+    fun checkForDuplicationMobile(mobile: String, token: String) {
+
+        if (!registerMobileButtonContinue?.isStartAnim!!)
+            registerMobileButtonContinue.startAnimation()
+
+        val jsonObject = JSONObject()
+        val jsonArray = JSONArray()
+        val lID = sessionManager?.getsetSelectedLanguage()
+
+        try {
+            jsonObject.put("loginuserID", "0")
+            jsonObject.put("userMobile", mobile.replace("+91 ", ""))
+            jsonObject.put("userEmail", "")
+            jsonObject.put("languageID", lID)
+            jsonObject.put("apiType", RestClient.apiType)
+            jsonObject.put("apiVersion", RestClient.apiVersion)
+            jsonArray.put(jsonObject)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } catch (e: JsonParseException) {
+            e.printStackTrace()
+        }
+
+        val resendOTP = ViewModelProviders.of(this@RegisterMobileActivity)
+                .get(OtpResendAndCheckDuplicationModel::class.java)
+        resendOTP.apiCall(this@RegisterMobileActivity, jsonArray.toString(), 1)
+                .observe(this@RegisterMobileActivity,
+                        { response ->
+                            MyUtils.hideKeyboard1(this@RegisterMobileActivity)
+
+                            if (!response.isNullOrEmpty()) {
+
+                                if (response[0].status.equals("true", true)) {
+                                   sendOtp(mobile,token)
+                                } else {
+                                    if (registerMobileButtonContinue.isStartAnim) registerMobileButtonContinue?.endAnimation()
+                                    //No data and no internet
+                                    if (MyUtils.isInternetAvailable(this@RegisterMobileActivity)) {
+                                        if (!response[0].message.isNullOrEmpty()) {
+                                            MyUtils.showSnackbarkotlin(
+                                                    this@RegisterMobileActivity,
+                                                    registerMobileLayoutMain,
+                                                    response[0].message!!
+                                            )
+                                        } else {
+                                            MyUtils.showSnackbarkotlin(
+                                                    this@RegisterMobileActivity,
+                                                    registerMobileLayoutMain,
+                                                    msgAlreadyExist
+                                            )
+                                        }
+                                    } else {
+                                        MyUtils.showSnackbarkotlin(
+                                                this@RegisterMobileActivity,
+                                                registerMobileLayoutMain,
+                                                msgNoInternet
+                                        )
+                                    }
+                                }
+                            } else {
+
+                                if (registerMobileButtonContinue.isStartAnim) registerMobileButtonContinue?.endAnimation()
+
+                                //No internet and somting went rong
+                                if (MyUtils.isInternetAvailable(this@RegisterMobileActivity)) {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterMobileActivity,
+                                            registerMobileLayoutMain,
+                                            msgSomthingRong
+                                    )
+                                } else {
+                                    MyUtils.showSnackbarkotlin(
+                                            this@RegisterMobileActivity,
+                                            registerMobileLayoutMain,
+                                            msgNoInternet
+                                    )
+                                }
+                            }
+                        })
+
     }
 }

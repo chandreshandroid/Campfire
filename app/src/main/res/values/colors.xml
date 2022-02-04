@@ -71,5 +71,7 @@
     <color name="splesh_dark_color">#2D2D2D</color>
     <color name="otpUnderlinecolor">#A5A6B6</color>
     <color name="fbBtncolor">#3962AC</color>
+    <color name="user_profile_bg">#894FC4</color>
+
 
 </resources>

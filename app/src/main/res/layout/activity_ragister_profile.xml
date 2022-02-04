@@ -222,6 +222,7 @@
                                 android:layout_marginRight="@dimen/_10sdp"
                                 android:drawableStart="@drawable/verified_email_icon"
                                 android:drawablePadding="@dimen/_8sdp"
+                                android:visibility="gone"
                                 android:drawableTint="@color/white"
                                 android:fontFamily="@font/nunito_regular"
                                 android:textColor="@color/colorOnError"

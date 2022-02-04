@@ -32,15 +32,12 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.app.ActivityCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -131,7 +128,7 @@ class MainActivity : AppCompatActivity(), NavigationHost, NotifyInterface, Notif
     private var locationProvider: LocationProvider? = null
 
     var fromPush = false
-
+    var drawer_view:View ?= null
     companion object {
         val TAG: String = SplashActivity::class.java.simpleName
         const val REQUEST_UPDATE_CODE = 1
@@ -406,15 +403,9 @@ class MainActivity : AppCompatActivity(), NavigationHost, NotifyInterface, Notif
     }
 
     public override fun navigateTo(fragment: Fragment, tag: String, addToBackstack: Boolean) {
-//        .setCustomAnimations(
-//            R.anim.slide_in_left,
-//            R.anim.slide_out_right,
-//            R.anim.slide_in_right,
-//            R.anim.slide_out_left
-//        )
+
         val transaction = supportFragmentManager
             .beginTransaction()
-
             .replace(R.id.container, fragment, tag)
 
         if (addToBackstack) {
@@ -464,23 +455,8 @@ class MainActivity : AppCompatActivity(), NavigationHost, NotifyInterface, Notif
                 if (fromPush && manager.backStackEntryCount === 1) {
                     fromPush = false
                     navigateTo(MapFragment(), MapFragment::class.java.name, true)
-                } else if (manager.backStackEntryCount === 1) {
-                    /*if (f != null && f is FeedFragment) {
-                        showexit()
-                    } else {
-                        navigateTo(FeedFragment(), FeedFragment::class.java.name, true)
-                    }*/
-
-                    navigateTo(MapFragment(), MapFragment::class.java.name, true)
-
-                } else if (f != null && f is SaveProfileFragment) {
-                    navigateTo(
-                        ProfileDetailFragment(),
-                        ProfileDetailFragment::class.java.name,
-                        true
-                    )
-                } else if (f != null && f is MapFragment) {
-                    navigateTo(MapFragment(), MapFragment::class.java.name, true)
+                }   else if (f != null && f is MapFragment) {
+                  showexit()
                 } else
                     manager.popBackStack()
             } else {
@@ -1454,7 +1430,7 @@ private val REQUEST_CODE_Location_PERMISSIONS = 6
 
 @RequiresApi(Build.VERSION_CODES.M)
 fun permissionLocation() {
-    if (!addPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
+  /*  if (!addPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
         val message = getString(R.string.grant_access_location)
 
         MyUtils.showMessageOKCancel(this@MainActivity, message, "Use location service?",
@@ -1468,7 +1444,7 @@ fun permissionLocation() {
     } else {
         //openNextActivity()
         getCurrentLocation()
-    }
+    }*/
 
 }
 
@@ -1479,7 +1455,7 @@ fun getCurrentLocation() {
         object : LocationProvider.CurrentLocationCallback {
             override fun handleNewLocation(location: Location) {
 
-                Log.d("currentLocation", location.toString())
+              //  Log.d("currentLocation", location.toString())
 
                 locationProvider?.disconnect()
 //                    MyUtils.currentLattitude=location.latitude
@@ -1496,13 +1472,13 @@ fun getCurrentLocation() {
                     CurrentCityName(location.latitude, location.longitude)
 
                     (getCurrentFragment() as FeedFragment).pageNo = 0
-                    (getCurrentFragment() as FeedFragment).getPostList()
+                  //  (getCurrentFragment() as FeedFragment).getPostList()
                     (getCurrentFragment() as FeedFragment).setHeaderText()
                 } else if (getCurrentFragment() is MapFragment) {
                     MyUtils.currentLattitude = location.latitude
                     MyUtils.currentLongitude = location.longitude
                     CurrentCityName(location.latitude, location.longitude)
-                    (getCurrentFragment() as MapFragment).getPostList("main")
+                 //   (getCurrentFragment() as MapFragment).getPostList("main")
                     (getCurrentFragment() as MapFragment).setHeaderText()
                 }
             }
@@ -1534,7 +1510,7 @@ private fun CurrentCityName(lattitude: Double, longitude: Double) {
             longitude,
             1
         )
-        if (addresses != null) {
+        if (!addresses.isNullOrEmpty()) {
             MyUtils.locationCityName =
                 addresses[0].locality + ", " + addresses[0].adminArea + ", " + addresses[0].countryName
             MyUtils.locationCityNameFix =
@@ -1712,9 +1688,9 @@ private fun updaterDownloadCompleted() {
 
 
 fun initNavigation() {
-    var drawer_view = LayoutInflater.from(this).inflate(R.layout.navigation_view, null)
+    drawer_view = LayoutInflater.from(this).inflate(R.layout.navigation_view, null)
 
-    drawer_view.llHome.setOnClickListener {
+    drawer_view?.llHome?.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
 
         var mapFragment = MapFragment()
@@ -1726,7 +1702,7 @@ fun initNavigation() {
         )
     }
 
-    drawer_view.llProfil.setOnClickListener {
+    drawer_view!!.llProfil.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
         if (sessionManager?.isLoggedIn()!!) {
@@ -1761,7 +1737,7 @@ fun initNavigation() {
 
     }
 
-    drawer_view.llPrivacyPolicy.setOnClickListener {
+    drawer_view!!.llPrivacyPolicy.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
         if (sessionManager?.isLoggedIn()!!) {
@@ -1797,7 +1773,7 @@ fun initNavigation() {
 
     }
 
-    drawer_view.llCondition.setOnClickListener {
+    drawer_view!!.llCondition.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
         if (sessionManager?.isLoggedIn()!!) {
@@ -1834,7 +1810,7 @@ fun initNavigation() {
     }
 
 
-    drawer_view.llTrendingPost.setOnClickListener {
+    drawer_view!!.llTrendingPost.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
 
@@ -1849,7 +1825,7 @@ fun initNavigation() {
 
     }
 
-    drawer_view.llAddPost.setOnClickListener {
+    drawer_view!!.llAddPost.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         if (sessionManager?.isLoggedIn()!!) {
             if (userData?.userVerified.equals("Yes", false)) {
@@ -1870,7 +1846,7 @@ fun initNavigation() {
 
     }
 
-    drawer_view.llFavourite.setOnClickListener {
+    drawer_view!!.llFavourite.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
 
@@ -1882,7 +1858,7 @@ fun initNavigation() {
 
     }
 
-    drawer_view.llSettings.setOnClickListener {
+    drawer_view!!.llSettings.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
 
@@ -1893,7 +1869,7 @@ fun initNavigation() {
         }
     }
 
-    drawer_view.llSettings.setOnClickListener {
+    drawer_view!!.llSettings.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         val currentFargment = getCurrentFragment()
 
@@ -1905,36 +1881,34 @@ fun initNavigation() {
     }
 
 
-    drawer_view.llSignOut.setOnClickListener {
+    drawer_view!!.llSignOut.setOnClickListener {
         mDrawerLayout.closeDrawer(Gravity.LEFT)
         if (sessionManager?.isLoggedIn()!!) {
             sessionManager?.create_login_session("", "", "", false, false, false, "", "")
-            MyUtils.startActivity(this@MainActivity, LoginActivity::class.java, false)
+            MyUtils.startActivity(this@MainActivity, LoginActivity::class.java, true)
         } else {
-            MyUtils.startActivity(this@MainActivity, LoginActivity::class.java, false)
+            MyUtils.startActivity(this@MainActivity, LoginActivity::class.java, true)
 
         }
     }
+    setProfileData()
 
-
-
-    if (sessionManager?.isLoggedIn()!!) {
-        drawer_view.llSignOut.visibility = View.VISIBLE
-        drawer_view.tx_name.text = sessionManager!!.get_UserName().toString()
-        drawer_view.txUserId.text = sessionManager!!.get_Email().toString()
-
-        Glide.with(this@MainActivity!!)
-            .load(RestClient.image_base_url_users + sessionManager!!.get_Profile())
-            .placeholder(R.drawable.user_profile_pic_placeholder_white)
-            .error(R.drawable.user_profile_pic_placeholder_white)
-            .into(drawer_view.img_profile!!)
-    } else {
-        drawer_view.llSignOut.visibility = View.GONE
-
-        drawer_view.tx_name.text = "-"
-        drawer_view.txUserId.text = "-"
-    }
     navView.addView(drawer_view)
 
 }
+
+    fun setProfileData() {
+        if (sessionManager?.isLoggedIn()!!) {
+            drawer_view!!.llSignOut.visibility = View.VISIBLE
+            drawer_view!!.tx_name.text = sessionManager!!.get_UserName().toString()
+            drawer_view!!.txUserId.text = sessionManager!!.get_Email().toString()
+            drawer_view!!.img_profile!!.setImageURI(RestClient.image_base_url_users + sessionManager!!.get_Authenticate_User().userProfilePicture)
+
+        } else {
+            drawer_view!!.llSignOut.visibility = View.GONE
+
+            drawer_view!!.tx_name.text = "-"
+            drawer_view!!.txUserId.text = "-"
+        }
+    }
 }

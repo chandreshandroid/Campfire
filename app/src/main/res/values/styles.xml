@@ -49,6 +49,7 @@
     <style name="ToobarTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/splesh_dark_color</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
     <style name="loginTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowLightStatusBar">false</item>
@@ -354,6 +355,7 @@
         <item name="android:textAlignment">textStart</item>
         <item name="android:maxLines">1</item>
         <item name="android:singleLine">true</item>
+
     </style>
 
     <style name="AppCompatTextView_seting" parent="Widget.AppCompat.TextView">
@@ -377,4 +379,7 @@
         <item name="android:background">@color/gray_base_line</item>
     </style>
 
+    <style name="DatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/selectedColor</item>
+    </style>
 </resources>

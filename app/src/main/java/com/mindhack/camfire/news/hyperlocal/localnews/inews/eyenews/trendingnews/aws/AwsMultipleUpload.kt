@@ -11,6 +11,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility
 import com.amazonaws.services.s3.AmazonS3Client
+import com.amazonaws.services.s3.model.CannedAccessControlList
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.application.MyApplication
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.pojo.AddImages
 import com.mindhack.camfire.news.hyperlocal.localnews.inews.eyenews.trendingnews.util.ImageSaver
@@ -65,9 +66,9 @@ abstract class AwsMultipleUpload(
             for (i in imageList?.indices!!) {
 
                 observer = transferUtility.upload(
-                    uploadPath,
-                    imageList!![i]!!.imageName
-                    , File(imageList!![i]!!.sdcardPath!!)
+                    AWSConfiguration.bucket,
+                        uploadPath+ imageList!![i]!!.imageName
+                    , File(imageList!![i]!!.sdcardPath!!),CannedAccessControlList.PublicRead
                 )
 
                 imageList!![i]!!.transferId = observer?.getId()!!
@@ -195,8 +196,8 @@ abstract class AwsMultipleUpload(
                 for (i in imageList?.indices!!) {
 
                     observer = transferUtility.upload(
-                        uploadPath,
-                        imageList!![i]!!.imageName!!,  /* The bucket to upload to */ /* The key for the uploaded object */
+                            AWSConfiguration.bucket,
+                       uploadPath+imageList!![i]!!.imageName!!,  /* The bucket to upload to */ /* The key for the uploaded object */
                         File(imageList!![i]!!.sdcardPath) /* The file where the data to upload exists */
                     )
                     imageList!![i]!!.transferId = observer?.getId()!!

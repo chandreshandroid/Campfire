@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgrounddarkcolor">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -11,14 +12,27 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:orientation="horizontal">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/img_profile"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/_20sdp"
-            android:elevation="20dp"
-            android:src="@drawable/user_profile_pic_placeholder_white" />
+            app:placeholderImageScaleType="fitXY"
+            app:placeholderImage="@drawable/user_profile_pic_placeholder_white_fresco"
+            app:roundAsCircle="true"
+            app:actualImageScaleType="focusCrop"
+            app:roundTopLeft="false"
+            app:roundTopRight="false"
+            app:roundBottomLeft="false"
+            app:roundBottomRight="false"
+            app:roundTopStart="false"
+            app:roundTopEnd="false"
+            app:roundBottomStart="false"
+            app:roundBottomEnd="false"
+           />
+
+
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
